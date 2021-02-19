@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  touch-action: manipulation;
+  cursor: default;
+  font-size: 18px;
+}
