@@ -27,3 +27,13 @@ function resetGame(notify) {
     successMessage("Game reset")
   }
 }
+
+function loadGame(notify) {
+  let data = JSON.parse(localStorage.getItem("user"))
+  if (data != null) {
+    user = data;
+  }
+  if (notify) {
+    successMessage("Loaded version " + user.version)
+  }
+}
