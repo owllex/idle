@@ -17,13 +17,13 @@ function newUser() {
 function saveGame(notify) {
   localStorage.setItem("user", JSON.stringify(user))
   if (notify) {
-    success("Game Saved")
+    successMessage("Game Saved")
   }
 }
 
 function resetGame(notify) {
   loadGame(newUser());
   if (notify) {
-    success("Game reset")
+    successMessage("Game reset")
   }
 }
