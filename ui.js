@@ -6,8 +6,8 @@ function refreshStats() {
     fillUiElements(className, user.stats.current[stat])
   }
   fillUiElements("role-value", user.currentRole)
-  fillUiElements("level-value, user.roles[user.currentRole].level)
-  fillUiElements("xp-value, user.roles[user.currentRole].xp)
+  fillUiElements("level-value", user.roles[user.currentRole].level)
+  fillUiElements("xp-value", user.roles[user.currentRole].xp)
 }
 
 function refreshUi() {
