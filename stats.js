@@ -66,6 +66,17 @@ function getBonusBlockForRole(role, level) {
   }
 }
 
+function clamp(value, max) {
+  return Math.max(Math.min(value, max), 0)
+}
+
+// Fixes vitals being out of range due to statistic adjustments.
+function adjustVitals() {
+  user.vitals.hp = clamp(user.vitals.hp, user.stats.current.maxHp)
+  user.vitals.mp = clamp(user.vitals.mp, user.stats.current.maxMp)
+  user.vitals.st = clamp(user.vitals.st, user.stats.current.maxSt)
+}
+
 function updateStats() {
   // Reset stats
   let newStats = user.stats.base
@@ -80,4 +91,6 @@ function updateStats() {
   }
 
   user.stats.current = newStats
+  
+  adjustVitals()
 }
