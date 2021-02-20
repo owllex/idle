@@ -29,13 +29,6 @@ function saveGame(notify) {
   }
 }
 
-function resetGame(notify) {
-  loadGame(newUser());
-  if (notify) {
-    successMessage("Game reset")
-  }
-}
-
 function loadGame(notify) {
   let data = JSON.parse(localStorage.getItem("user"))
   if (data != null) {
@@ -43,5 +36,12 @@ function loadGame(notify) {
   }
   if (notify) {
     successMessage("Loaded version " + user.version)
+  }
+}
+
+function resetGame(notify) {
+  user = newUser()
+  if (notify) {
+    successMessage("Game reset")
   }
 }
