@@ -10,6 +10,7 @@ function grantXp(xp) {
     // Level up
     user.roles[user.currentRole].level += 1
     user.roles[user.currentRole].xp -= xpForLevel
+    updateStats()
     successMessage("Level up")
   }
 }
