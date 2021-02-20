@@ -7,7 +7,7 @@ body {
   font-size: 18px;
 }
 
-#stats {
+#stats, #role {
   display: table;
 }
 .stat-row {
