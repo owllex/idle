@@ -3,8 +3,8 @@ body {
   color: rgb(35, 138, 12);
   scrollbar-width: none;
   touch-action: manipulation;
-  cursor: default;
   font-size: 18px;
+  font-family: monospace;
 }
 
 #stats, #role {
@@ -15,4 +15,5 @@ body {
 }
 .stat-name, .stat-value {
   display: table-cell;
+  padding-right: 1em;
 }
