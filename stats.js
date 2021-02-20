@@ -7,8 +7,17 @@ const allRoles = [
 ]
 
 const allStats = [
-  "str", "con", "dex", "agi", "int", "wis", "cha",
-  "maxHp", "maxMp", "maxSp"
+  "str", // Strength: brute damage, physical skill prowess, HP (secondary)
+  "vit", // Vitality: HP (primary), SP (primary), resistance to physical effects
+  "dex", // Dexterity: finesse damage, fine skill prowess
+  "agi", // Agility: Initiative, speed, evasion, SP (secondary)
+  "int", // Intelligence: arcane magic damage, MP (secondary)
+  "wis", // Wisdom: nature magic damage, resistance to magical effects, MP (secondary)
+  "mag", // Magic: MP (primary), overall magic damage
+  "cha", // Charisma: interaction prowess, light/dark magic damage, MP (secondary)
+  "maxHp", // Max hit points
+  "maxMp", // Max magic points
+  "maxSp" // Max stamina points
 ]
 
 function addStatBlocks(left, right) {
