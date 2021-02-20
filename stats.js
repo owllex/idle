@@ -78,6 +78,12 @@ function adjustVitals() {
   user.vitals.st = clamp(user.vitals.st, user.vitals.maxSt)
 }
 
+function recoverVitals() {
+  user.vitals.hp = user.vitals.maxHp
+  user.vitals.mp = user.vitals.maxMp
+  user.vitals.st = user.vitals.maxSt
+}
+
 function calculateDerivedStats(stats) {
   return {
     maxHp: Math.floor(stats.maxHp + stats.vit * 2 + stats.str),
