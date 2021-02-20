@@ -7,6 +7,10 @@ body {
   font-family: monospace;
 }
 
+#main {
+  width: 300px;
+}
+
 #stats, #role {
   display: table;
 }
@@ -16,4 +20,7 @@ body {
 .stat-name, .stat-value {
   display: table-cell;
   padding-right: 1em;
+}
+
+.progress-holder {
 }
