@@ -20,6 +20,12 @@ const allStats = [
   "maxSt" // Max stamina
 ]
 
+function getStartingVitals() {
+  return {
+    hp: 10, mp: 10, st: 10
+  }
+}
+
 function getStartingStatBlock() {
   return {
     str: 3, vit: 3, dex: 3, agi: 3, int: 3, wis: 3, mag: 3, cha: 3,
