@@ -34,9 +34,6 @@ body {
 }
 
 .progress {
-  background: #ad5389;
-  background: -webkit-linear-gradient(to bottom, #3c1053, #ad5389);
-  background: linear-gradient(to bottom, #3c1053, #ad5389);
   border-radius: 3px;
   height: 20px;
   width: 0;
@@ -45,6 +42,30 @@ body {
   top: 0;
   left: 0;
   opacity: 0.5;
+}
+
+.hp-progress .progress {
+  background: darkred;
+  background: -webkit-linear-gradient(to bottom, red, darkred);
+  background: linear-gradient(to bottom, red, darkred);  
+}
+
+.mp-progress .progress {
+  background: darkblue;
+  background: -webkit-linear-gradient(to bottom, blue, darkblue);
+  background: linear-gradient(to bottom, blue, darkblue);  
+}
+
+.st-progress .progress {
+  background: darkorange;
+  background: -webkit-linear-gradient(to bottom, orange, darkorange);
+  background: linear-gradient(to bottom, orange, darkorange);  
+}
+
+.xp-progress .progress {
+  background: #ad5389;
+  background: -webkit-linear-gradient(to bottom, #3c1053, #ad5389);
+  background: linear-gradient(to bottom, #3c1053, #ad5389);  
 }
 
 .button {
