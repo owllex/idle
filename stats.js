@@ -58,7 +58,7 @@ function getBonusBlockForRole(role, level) {
     case "Apprentice":
       return {active: {int: level - 1}, global: {int: level - 1}}
     case "Rogue":
-      return {active: {spd: level - 1}, global: {spd: level - 1}}
+      return {active: {agi: level - 1}, global: {agi: level - 1}}
     case "Acolyte":
       return {active: {wis: level - 1}, global: {wis: level - 1}}
     default:
@@ -82,7 +82,7 @@ function calculateDerivedStats(stats) {
   return {
     maxHp: Math.floor(stats.maxHp + stats.vit * 2 + stats.str),
     maxMp: Math.floor(stats.maxMp + stats.mag + (stats.int + stats.wis + stats.cha) / 3),
-    maxSp: Math.floor(stats.maxSt + stats.vit + stats.agi),
+    maxSt: Math.floor(stats.maxSt + stats.vit + stats.agi),
   }
 }
 
