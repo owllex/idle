@@ -1,5 +1,5 @@
 // How often to update the game state, in ticks/second.
-const UPDATE_RATE = 1
+const UPDATE_RATE = 4
 
 function event(e, func) {
   window.addEventListener(e, func)
