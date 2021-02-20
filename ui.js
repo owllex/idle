@@ -9,6 +9,7 @@ function refreshStats() {
   fillUiElements("role-value", user.currentRole)
   fillUiElements("level-value", user.roles[user.currentRole].level)
   fillUiElements("xp-value", user.roles[user.currentRole].xp)
+  fillUiElements("next-xp-value", xpForRoleLevel(user.roles[user.currentRole].level + 1))
 }
 
 function refreshUi() {
