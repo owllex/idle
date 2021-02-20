@@ -5,7 +5,8 @@ function fillProgressBar(className, currentValue, maxValue) {
   let elements = document.getElementsByClassName(className)
   for (i = 0; i < elements.length; i++) {
     let element = elements[i]
-    element.innerText = `${currentValue} / ${maxValue}`
+    let textContainer = element.getElementsByClassname("progress-text")[0]
+    textContainer.innerText = `${currentValue} / ${maxValue}`
     let progressBar = element.getElementsByClassName("progress")[0]
     progressBar.dataset.percent = percent
     progressBar.style.width = `${percent}%`
