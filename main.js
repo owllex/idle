@@ -1,4 +1,5 @@
-console.log("loaded")
+// How often to update the game state, in ticks/second.
+const UPDATE_RATE = 1
 
 function event(e, func) {
   window.addEventListener(e, func)
@@ -6,7 +7,20 @@ function event(e, func) {
 
 var user = newUser();
 
-function progress() {
+function tick() {
+  console.log("tick")
+}
+
+function configureIntervals() {
+  // Game ticks.
+  setInterval(() => {
+    tick()
+  }, 1000 / UPDATE_RATE)
+  
+  // Auto save.
+  setInterval(() => {
+    saveGame(false)
+  }, 60000)
 }
 
 document.addEventListener("unload", () => {
@@ -16,5 +30,7 @@ document.addEventListener("unload", () => {
 event("load", () => {
   setTimeout( () => {
     loadGame()
+    configureIntervals()
+    console.log("Loaded")
   }, 1)
 })
