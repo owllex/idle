@@ -5,8 +5,6 @@ function event(e, func) {
   window.addEventListener(e, func)
 }
 
-var user = newUser();
-
 function tick() {
   console.log("tick")
   user.classes[user.currentClass].xp += 1
