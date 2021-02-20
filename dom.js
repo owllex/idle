@@ -37,7 +37,7 @@ function replaceClass(cl1, cl2, id) {
 
 function fillUiElements(className, value) {
   let elements = document.getElementsByClassName(className)
-  for (element in elements) {
-    elements[element].innerText = value
+  for (i = 0; i < elements.length; i++) {
+    elements[i].innerText = value
   }
 }
