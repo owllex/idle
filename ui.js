@@ -1,10 +1,11 @@
 const UI_REFRESH_STATS = allStats
 
 function fillProgressBar(className, currentValue, maxValue) {
-  let percent = currentValue / maxValue
+  let percent = currentValue / maxValue * 100
   let elements = document.getElementsByClassName(className)
   for (i = 0; i < elements.length; i++) {
-    elements[i].style.width = "" + (percent * 100) + "%"
+    elements[i].dataset.percent = percent
+    elements[i].style.width = `${percent}%`
   }
 }
 
@@ -20,7 +21,6 @@ function refreshStats() {
   let currentXp = user.roles[user.currentRole].xp
   let nextXp = xpForRoleLevel(user.roles[user.currentRole].level + 1)
   let xpProgressText = "" + currentXp + " / " + nextXp
-  fillUiElements("xp-progress-value", xpProgressText)
   fillProgressBar("xp-progress", currentXp, nextXp)
 }
 
