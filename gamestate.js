@@ -3,14 +3,8 @@ function newUser() {
     version: "0.0.1",
     currentRole: "Commoner",
     stats: {
-      base: {
-        str: 3, vit: 3, dex: 3, agi: 3, int: 3, wis: 3, cha: 3,
-        maxHp: 10, maxMp: 10, maxSp: 10,
-      },
-      current: {
-        str: 3, vit: 3, dex: 3, agi: 3, int: 3, wis: 3, cha: 3,
-        maxHp: 10, maxMp: 10, maxSp: 10,
-      },
+      base: getStartingStatBlock(),
+      current: getStartingStatBlock(),
     },
     roles: {
       "Commoner": {
