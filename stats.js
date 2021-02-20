@@ -46,7 +46,7 @@ function getBonusBlockForRole(role, level) {
 
 function updateStats() {
   // Reset stats
-  let newStats = user.baseStats
+  let newStats = user.stats.base
   
   // Apply role bonuses
   for (role in user.roles) {
@@ -56,8 +56,6 @@ function updateStats() {
     }
     newStats = addStatBlocks(newStats, block.global)
   }
-  
-  // Apply temporary mods
-  newStats = addStatBlock(newStats, user.mods.stats)
-  user.stats = newStats
+
+  user.stats.current = newStats
 }
