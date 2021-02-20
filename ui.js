@@ -1,5 +1,6 @@
 const UI_REFRESH_STATS = allStats
 
+
 function refreshStats() {
   for (stat in UI_REFRESH_STATS) {
     let statName = UI_REFRESH_STATS[stat]
@@ -8,8 +9,9 @@ function refreshStats() {
   }
   fillUiElements("role-value", user.currentRole)
   fillUiElements("level-value", user.roles[user.currentRole].level)
-  fillUiElements("xp-value", user.roles[user.currentRole].xp)
-  fillUiElements("next-xp-value", xpForRoleLevel(user.roles[user.currentRole].level + 1))
+  
+  let xpProgressText = "" + user.roles[user.currentRole].xp + " / " + xpForRoleLevel(user.roles[user.currentRole].level + 1)
+  fillUiElements("xp-progress-value", xpProgressText)
 }
 
 function refreshUi() {
