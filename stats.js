@@ -101,9 +101,9 @@ function updateStats() {
   let derivedStats = calculateDerivedStats(newStats)
 
   user.stats.current = newStats
-  vitals.maxHp = derivedStats.maxHp
-  vitals.maxMp = derivedStats.maxMp
-  vitals.maxSt = derivedStats.maxSt
+  user.vitals.maxHp = derivedStats.maxHp
+  user.vitals.maxMp = derivedStats.maxMp
+  user.vitals.maxSt = derivedStats.maxSt
   
   adjustVitals()
 }
