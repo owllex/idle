@@ -9,6 +9,8 @@ var user = newUser();
 
 function tick() {
   console.log("tick")
+  user.classes[user.currentClass].xp += 1
+  refreshUi()
 }
 
 function configureIntervals() {
@@ -30,6 +32,7 @@ document.addEventListener("unload", () => {
 event("load", () => {
   setTimeout( () => {
     loadGame()
+    refreshUi()
     configureIntervals()
     console.log("Loaded")
   }, 1)
