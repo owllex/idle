@@ -22,6 +22,8 @@ function saveGame(notify) {
   localStorage.setItem("user", JSON.stringify(user))
   if (notify) {
     successMessage("Game Saved")
+  } else {
+    console.log("Autosave")
   }
 }
 
