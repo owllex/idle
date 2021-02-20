@@ -34,3 +34,17 @@ function replaceClass(cl1, cl2, id) {
   document.getElementById(id).classList.remove(cl1)
   document.getElementById(id).classList.add(cl2)
 }
+
+function refreshStats() {
+  for (stat in allStats) {
+    let className = allStats[stat] + "-stat-value"
+    let elements = document.getElementsByClassName(className)
+    for (element in elements) {
+      elements[element].innerText = user.stats.current[stat]
+    }
+  }
+}
+
+function refreshUi() {
+  refreshStats() 
+}
