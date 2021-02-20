@@ -17,8 +17,15 @@ const allStats = [
   "cha", // Charisma: interaction prowess, light/dark magic damage, MP (secondary)
   "maxHp", // Max hit points
   "maxMp", // Max magic points
-  "maxSp" // Max stamina points
+  "maxSt" // Max stamina
 ]
+
+function getStartingStatBlock() {
+  return {
+    str: 3, vit: 3, dex: 3, agi: 3, int: 3, wis: 3, mag: 3, cha: 3,
+    maxHp: 10, maxMp: 10, maxSt: 10,
+  }
+}
 
 function addStatBlocks(left, right) {
   var result = left
