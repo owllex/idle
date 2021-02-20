@@ -18,6 +18,8 @@ function newUser() {
   }
 }
 
+user = newUser()
+
 function saveGame(notify) {
   localStorage.setItem("user", JSON.stringify(user))
   if (notify) {
