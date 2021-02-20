@@ -1,10 +1,10 @@
 const UI_REFRESH_STATS = allStats
 
 function fillProgressBar(className, currentValue, maxValue) {
-  let elements = document.getElementsByClassName(className)
   let percent = currentValue / maxValue
-  for (element in elements) {
-    elements[element].style.width = "" + (percent * 100) + "%"
+  let elements = document.getElementsByClassName(className)
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "" + (percent * 100) + "%"
   }
 }
 
