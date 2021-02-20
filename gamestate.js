@@ -2,6 +2,7 @@ function newUser() {
   return {
     version: "0.0.1",
     currentRole: "Commoner",
+    vitals: getStartingVitals(),
     stats: {
       base: getStartingStatBlock(),
       current: getStartingStatBlock(),
