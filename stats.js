@@ -1,4 +1,4 @@
-const allClasses = [
+const allRoles = [
   "Commoner",
   "Fighter",
   "Rogue",
@@ -26,8 +26,8 @@ function addStatBlocks(left, right) {
   return result
 }
 
-function getBonusBlockForClass(class, level) {
-  switch(class) {
+function getBonusBlockForRole(role, level) {
+  switch (role) {
     case "Commoner":
       return {active: {maxHp: level - 1}, global: {maxHp: level - 1}}
     case "Fighter":
@@ -39,7 +39,7 @@ function getBonusBlockForClass(class, level) {
     case "Acolyte":
       return {active: {wis: level - 1}, global: {wis: level - 1}}
     default:
-      console.log("No class " + class);
+      console.log("No role " + role);
       return {active: {}, global: {}}
   }
 }
@@ -48,10 +48,10 @@ function updateStats() {
   // Reset stats
   let newStats = user.baseStats
   
-  // Apply class bonuses
-  for (class in user.classes) {
-    var block = getBonusBlockForClass(class, user.classes[class].level)
-    if (user.currentClass == class) {
+  // Apply role bonuses
+  for (role in user.roles) {
+    var block = getBonusBlockForRole(role, user.roles[role].level)
+    if (user.currentRole == role) {
       newStats = addStatBlocks(newStats, block.active)
     }
     newStats = addStatBlocks(newStats, block.global)
