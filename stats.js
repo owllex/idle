@@ -8,9 +8,9 @@ const allRoles = [
 
 const allStats = [
   "str", // Strength: brute damage, physical skill prowess, HP (secondary)
-  "vit", // Vitality: HP (primary), SP (primary), resistance to physical effects
+  "vit", // Vitality: HP (primary), SP (co-primary), resistance to physical effects
   "dex", // Dexterity: finesse damage, fine skill prowess
-  "agi", // Agility: Initiative, speed, evasion, SP (secondary)
+  "agi", // Agility: Initiative, speed, evasion, SP (co-primary)
   "int", // Intelligence: arcane magic damage, MP (secondary)
   "wis", // Wisdom: nature magic damage, resistance to magical effects, MP (secondary)
   "mag", // Magic: MP (primary), overall magic damage
@@ -22,7 +22,8 @@ const allStats = [
 
 function getStartingVitals() {
   return {
-    hp: 10, mp: 10, st: 10
+    hp: 10, mp: 10, st: 10,
+    maxHp: 10, maxMp: 10, maxSt: 10,
   }
 }
 
@@ -72,9 +73,17 @@ function clamp(value, max) {
 
 // Fixes vitals being out of range due to statistic adjustments.
 function adjustVitals() {
-  user.vitals.hp = clamp(user.vitals.hp, user.stats.current.maxHp)
-  user.vitals.mp = clamp(user.vitals.mp, user.stats.current.maxMp)
-  user.vitals.st = clamp(user.vitals.st, user.stats.current.maxSt)
+  user.vitals.hp = clamp(user.vitals.hp, user.vitals.maxHp)
+  user.vitals.mp = clamp(user.vitals.mp, user.vitals.maxMp)
+  user.vitals.st = clamp(user.vitals.st, user.vitals.maxSt)
+}
+
+function calculateDerivedStats(stats) {
+  return {
+    maxHp: Math.floor(stats.maxHp + stats.vit * 2 + stats.str),
+    maxMp: Math.floor(stats.maxMp + stats.mag + (stats.int + stats.wis + stats.cha) / 3),
+    maxSp: Math.floor(stats.maxSt + stats.vit + stats.agi),
+  }
 }
 
 function updateStats() {
@@ -89,8 +98,12 @@ function updateStats() {
     }
     newStats = addStatBlocks(newStats, block.global)
   }
+  let derivedStats = calculateDerivedStats(newStats)
 
   user.stats.current = newStats
+  vitals.maxHp = derivedStats.maxHp
+  vitals.maxMp = derivedStats.maxMp
+  vitals.maxSt = derivedStats.maxSt
   
   adjustVitals()
 }
