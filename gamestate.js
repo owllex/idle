@@ -41,6 +41,7 @@ function loadGame(notify) {
 
 function resetGame(notify) {
   user = newUser()
+  saveGame(false)
   if (notify) {
     successMessage("Game reset")
   }
