@@ -4,4 +4,12 @@ function xpForRoleLevel(level) {
 
 function grantXp(xp) {
   user.roles[user.currentRole].xp += xp
+  let currentXp = user.roles[user.currentRole].xp
+  let xpForLevel = xpForRoleLevel(user.roles[user.currentRole].level + 1)
+  if (currentXp >= xpForLevel) {
+    // Level up
+    user.roles[user.currentRole].level += 1
+    user.roles[user.currentRole].xp -= xpForLevel
+    successMessage("Level up")
+  }
 }
