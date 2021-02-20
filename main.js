@@ -7,7 +7,7 @@ function event(e, func) {
 
 function tick() {
   console.log("tick")
-  user.classes[user.currentClass].xp += 1
+  user.roles[user.currentRole].xp += 1
   refreshUi()
 }
 
