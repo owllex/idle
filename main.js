@@ -50,6 +50,7 @@ event("load", () => {
   setTimeout( () => {
     loadGame()
     hookUpButtons()
+    hookUpTerminal()
     refreshUi()
     configureIntervals()
     console.log("Loaded")
