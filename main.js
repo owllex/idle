@@ -35,7 +35,7 @@ function hookUpTerminal() {
   input.addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      output.innerText += input.value
+      output.innerText += ("\n" + input.value)
       input.value = ""
     }
   });
