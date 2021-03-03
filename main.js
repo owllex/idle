@@ -28,6 +28,20 @@ function hookUpButtons() {
   document.getElementById("resetButton").addEventListener("click", () => resetGame(true))
 }
 
+function hookUpTerminal() {
+  let input = document.getElementById("input");
+  let output = document.getElementById("output"); 
+  
+  input.addEventListener("keypress", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      output.innerText += input.innerText
+      input.innerText = ""
+    }
+  });
+}
+
 document.addEventListener("unload", () => {
   saveGame()
 })
