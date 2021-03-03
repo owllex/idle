@@ -33,9 +33,8 @@ function hookUpTerminal() {
   let output = document.getElementById("output"); 
   
   input.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
-    console.log(event.key);
     if (event.key === 'Enter') {
+      console.log(event.key)
       event.preventDefault();
       output.innerText += input.innerText
       input.innerText = ""
