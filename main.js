@@ -34,10 +34,9 @@ function hookUpTerminal() {
   
   input.addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
-      console.log(event.key)
       event.preventDefault();
-      output.innerText += input.innerText
-      input.innerText = ""
+      output.innerText += input.value
+      input.value = ""
     }
   });
 }
