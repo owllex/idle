@@ -11,7 +11,7 @@ function enterText(input, output) {
     return
   }
   const commandTable = getCommandTable()
-  coonst command = words[0]
+  const command = words[0]
   if (!(command in commandTable)) {
     invalidCommand(null, output)
   } else {
