@@ -54,7 +54,18 @@ function scoreCommand(args, output) {
   logOutput("<SCORE>", output)
 }
 
+function vitalsCommand(args, output) {
+  const DEFAULT_PROGRESS_BAR_LENGTH = 22
+  let result = ""
+  result += formatProgressBar(user.vitals.hp, user.vitals.maxHp, DEFAULT_PROGRESS_BAR_LENGTH, true)
+  result += "\n" + formatProgressBar(user.vitals.mp, user.vitals.maxMp, DEFAULT_PROGRESS_BAR_LENGTH, true)
+  result += "\n" + formatProgressBar(user.vitals.st, user.vitals.maxSt, DEFAULT_PROGRESS_BAR_LENGTH, true)
+  logOutput(result, output)
+}
+
 const BASE_COMMANDS = {
+  "vitals": vitalsCommand,
+  "health": vitalsCommand,
   "score": scoreCommand,
   "sc": logOutput,
   "help": helpCommand,
