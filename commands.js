@@ -62,7 +62,7 @@ function buildCommandTable() {
       // Single command
       commandTable[command] = BASE_COMMANDS[commandList[0]]
     } else {
-      commandTable[command] = curry(ambiguousCommand(commandList))
+      commandTable[command] = curry(ambiguousCommand)(commandList))
     }
   }        
 }
