@@ -6,6 +6,18 @@ function enterText(input, output) {
   }
   output.innerText += ("\n" + text)
   input.value = ""
+  
+  const words = text.split(' ')
+  if (words.length == 0) {
+    return
+  }
+  const commandTable = getCommandTable()
+  if (!(words[0] in commandTable)) {
+    noCommand(null, output)
+  } else {
+    commandTable(words.slice(1), output)
+  }
+  
 }
 
 function initTerminal() {
