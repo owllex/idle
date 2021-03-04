@@ -4,7 +4,7 @@ function enterText(input, output) {
   if (!text) {
     return;
   }
-  output.innerText += ("\n" + text)
+  logInput(text, output)
   
   const words = text.split(' ')
   if (words.length == 0) {
