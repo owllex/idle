@@ -41,7 +41,7 @@ function initTerminal() {
   
   logOutput("Welcome!", output)
   
-  input.addEventListener("keyup", function(event) {
+  input.addEventListener("keydown", function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
       enterText(input, output);
