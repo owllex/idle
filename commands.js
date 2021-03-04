@@ -14,6 +14,14 @@ function curry(func) {
   };
 }
 
+function noCommand(args, output) {
+  logOutput("No such command.", output)
+}
+
+function helpCommand(args, output) {
+  logOutput("This will be more helpful someday.", output)
+}
+
 function ambiguousCommand(commandList, output) {
   let result = "Which of the following did you mean? " + commandList.join(', ')
   logOutput(result, output)
@@ -26,6 +34,7 @@ function scoreCommand(args, output) {
 const BASE_COMMANDS = {
   "score": scoreCommand,
   "sc": logOutput,
+  "help": helpCommand,
 }
 
 let commandTable = {}
