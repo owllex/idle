@@ -1,3 +1,5 @@
+const DEFAULT_PROGRESS_BAR_LENGTH = 22
+
 function logWithClass(text, className, output) {
   let textNode = document.createTextNode(text)
   let preNode = document.createElement("PRE")
@@ -55,7 +57,6 @@ function scoreCommand(args, output) {
 }
 
 function vitalsCommand(args, output) {
-  const DEFAULT_PROGRESS_BAR_LENGTH = 22
   let result = ""
   result += formatProgressBar(user.vitals.hp, user.vitals.maxHp, DEFAULT_PROGRESS_BAR_LENGTH, "HP", true)
   result += "\n" + formatProgressBar(user.vitals.mp, user.vitals.maxMp, DEFAULT_PROGRESS_BAR_LENGTH, "MP", true)
@@ -63,9 +64,19 @@ function vitalsCommand(args, output) {
   logOutput(result, output)
 }
 
+function experienceCommand(args, output) {
+  let role = user.roles[user.currentRole]
+  let result = ""
+  result += "Level " + role.level + " " + user.currentRole + "\n"
+  result += formatProgressBar(role.xp, xpForRoleLevel(role.level + 1), DEFAULT_PROGRESS_BAR_LENGTH, "XP", true)
+  logOutput(result, output)
+}
+
 const BASE_COMMANDS = {
   "vitals": vitalsCommand,
   "health": vitalsCommand,
+  "xp": experienceCommand,
+  "experience": experienceCommand,
   "score": scoreCommand,
   "sc": logOutput,
   "help": helpCommand,
