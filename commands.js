@@ -20,10 +20,12 @@ function formatProgressBar(value, max, length) {
   const empties = (length - 2) - blocks
   const frac = fractionalBlocks - blocks
   let midBlock = " "
-  if (frac >= 0.5) {
+  if (frac >= 0.66) {
+    midBlock = "/"
+  } else if (frac >= 0.33) {
     midBlock = "-"
   }
-  return "[" + ">".repeat(blocks) + midblock + " ".repeat(empties) + "]"
+  return "[" + "|".repeat(blocks) + midBlock + " ".repeat(empties) + "]"
 }
 
 
