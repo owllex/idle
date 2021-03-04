@@ -1,8 +1,4 @@
-input = document.getElementById("input");
-output = document.getElementById("output"); 
-
-
-function enterText() {
+function enterText(input, output) {
   let text = input.value
   input.value = ""
   if (!input.value) {
@@ -13,10 +9,13 @@ function enterText() {
 }
 
 function initTerminal() {  
+  input = document.getElementById("input");
+  output = document.getElementById("output");
+  
   input.addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      enterText();
+      enterText(input, output);
     }
   });
 }
