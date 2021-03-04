@@ -1,5 +1,5 @@
 function enterText(input, output) {
-  let text = input.value
+  const text = input.value
   input.value = ""
   if (!text) {
     return;
@@ -11,10 +11,11 @@ function enterText(input, output) {
     return
   }
   const commandTable = getCommandTable()
-  if (!(words[0] in commandTable)) {
+  coonst command = words[0]
+  if (!(command in commandTable)) {
     invalidCommand(null, output)
   } else {
-    commandTable(words.slice(1), output)
+    commandTable[command](words.slice(1), output)
   }
   
 }
