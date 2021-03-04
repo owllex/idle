@@ -47,15 +47,15 @@ function initTerminal() {
       enterText(input, output);
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      if (commandStack.length > commandIndex) {
+      if (commandIndex + 1 < commandStack.length) {
         commandIndex += 1
-        setText(input, commandStack[commandIndex]) 
+        setText(input, commandStack[commandStack.length - 1 - commandIndex])
       }
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       if (commandIndex > 0) {
         commandIndex -= 1
-        setText(input, commandStack[commandIndex]) 
+        setText(input, commandStack[commandStack.length - 1 - commandIndex])
       } else  {
         commandIndex = -1
         setText(input, "") 
