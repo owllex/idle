@@ -1,3 +1,16 @@
+commandStack = new Array()
+commandIndex = -1
+
+function pushCommand(command) {
+  commandStack.push(command)
+}
+
+function setText(input, text) {
+  input.value = text
+  input.focus()
+  input.setSelectionRange(input.value.length, input.value.length)
+}
+
 function enterText(input, output) {
   const text = input.value
   input.value = ""
@@ -5,6 +18,7 @@ function enterText(input, output) {
     return;
   }
   logInput(text, output)
+  pushCommand(text)
   
   const words = text.split(' ')
   if (words.length == 0) {
@@ -17,7 +31,6 @@ function enterText(input, output) {
   } else {
     commandTable[command](words.slice(1), output)
   }
-  
 }
 
 function initTerminal() {
@@ -32,6 +45,21 @@ function initTerminal() {
     if (event.key === 'Enter') {
       event.preventDefault();
       enterText(input, output);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (commandStack.length > commandIndex) {
+        commandIndex += 1
+        setText(input, commandStack[commandIndex]) 
+      }
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (commandIndex > 0) {
+        commandIndex -= 1
+        setText(input, commandStack[commandIndex]) 
+      } else  {
+        commandIndex = -1
+        setText(input, "") 
+      }
     }
   });
 }
