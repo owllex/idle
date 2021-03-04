@@ -38,6 +38,11 @@ function formatProgressBar(value, max, length, label, includeValues, showAsPerce
   return result
 }
 
+function saveCommand(args, output) {
+  saveGame()
+  logOutput("Game Saved!", output)
+}
+
 function invalidCommand(args, output) {
   logOutput("No such command.", output)
 }
@@ -78,7 +83,7 @@ const BASE_COMMANDS = {
   "xp": experienceCommand,
   "experience": experienceCommand,
   "score": scoreCommand,
-  "sc": logOutput,
+  "save": saveCommand,
   "help": helpCommand,
 }
 
