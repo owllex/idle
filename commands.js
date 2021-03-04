@@ -1,5 +1,17 @@
+function logWithClass(text, className, output) {
+  let textNode = document.createTextNode(text)
+  let preNode = document.createElement("PRE")
+  preNode.classList.add(className)
+  preNode.appendChild(textNode)
+  output.appendChild(preNode)
+}
+
 function logOutput(text, output) {
-  output.innerText += ("\n" + text)
+  logWithClass(text, "output-content", output)
+}
+
+function logInput(text, output) {
+  logWithClass(text, "input-content", output)
 }
 
 function curry(func) {
