@@ -33,6 +33,30 @@ function enterText(input, output) {
   }
 }
 
+function handleKeyEvent(event) {
+  if (event.isComposing || event.keyCode === 229) {
+    return
+  } else if (event.key === 'Enter') {
+    event.preventDefault();
+    enterText(input, output);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    if (commandIndex + 1 < commandStack.length) {
+      commandIndex += 1
+      setText(input, commandStack[commandStack.length - 1 - commandIndex])
+    }
+  } else if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    if (commandIndex > 0) {
+      commandIndex -= 1
+      setText(input, commandStack[commandStack.length - 1 - commandIndex])
+    } else  {
+      commandIndex = -1
+      setText(input, "") 
+    }
+  }
+}
+
 function initTerminal() {
   buildCommandTable()
   
@@ -41,25 +65,5 @@ function initTerminal() {
   
   logOutput("Welcome!", output)
   
-  input.addEventListener("keydown", function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      enterText(input, output);
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      if (commandIndex + 1 < commandStack.length) {
-        commandIndex += 1
-        setText(input, commandStack[commandStack.length - 1 - commandIndex])
-      }
-    } else if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (commandIndex > 0) {
-        commandIndex -= 1
-        setText(input, commandStack[commandStack.length - 1 - commandIndex])
-      } else  {
-        commandIndex = -1
-        setText(input, "") 
-      }
-    }
-  });
+  input.addEventListener("keydown", handleKeyEvent)
 }
