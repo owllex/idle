@@ -26,7 +26,7 @@ function initTerminal() {
   input = document.getElementById("input");
   output = document.getElementById("output");
   
-  logOutput("Welcome!")
+  logOutput("Welcome!", output)
   
   input.addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
