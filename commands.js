@@ -32,7 +32,7 @@ function formatProgressBar(value, max, length, label, includeValues, showAsPerce
     if (showAsPercent) {
       result += " " + Math.floor((value / max * 100)) + "%"
     } else {
-      result += " " + value + " / " + max
+      result += " " + formatNumber(value) + " / " + formatNumber(max)
     }
   }
   return result
