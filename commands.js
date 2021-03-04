@@ -14,17 +14,18 @@ function logInput(text, output) {
   logWithClass("> " + text, "input-content", output)
 }
 
-function curry(func) {
-  return function curried(...args) {
-    if (args.length >= func.length) {
-      return func.apply(this, args);
-    } else {
-      return function(...args2) {
-        return curried.apply(this, args.concat(args2));
-      }
-    }
-  };
+function formatProgressBar(value, max, length) {
+  const proportion = value / max * (length - 2)
+  const blocks = Math.floor(proportion)
+  const empties = max - blocks
+  const frac = proportion - blocks
+  let midBlock = " "
+  if (frac >= 0.5) {
+    midBlock = "-"
+  }
+  return "[" + ">".repeat(blocks) + midblock + " ".repeat(empties) + "]"
 }
+
 
 function invalidCommand(args, output) {
   logOutput("No such command.", output)
@@ -40,6 +41,7 @@ function ambiguousCommand(commandList, output) {
 }
 
 function scoreCommand(args, output) {
+  
   logOutput("<SCORE>", output)
 }
 
