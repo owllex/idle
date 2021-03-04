@@ -1,11 +1,10 @@
 function enterText(input, output) {
   let text = input.value
   input.value = ""
-  if (!input.value) {
+  if (!text) {
     return;
   }
   output.innerText += ("\n" + text)
-  input.value = ""
   
   const words = text.split(' ')
   if (words.length == 0) {
