@@ -13,7 +13,7 @@ function enterText(input, output) {
   }
   const commandTable = getCommandTable()
   if (!(words[0] in commandTable)) {
-    noCommand(null, output)
+    invalidCommand(null, output)
   } else {
     commandTable(words.slice(1), output)
   }
