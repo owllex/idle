@@ -33,7 +33,7 @@ function enterText(input, output) {
   }
 }
 
-function handleKeyEvent(event) {
+function handleKeyEvent(event, input, output) {
   if (event.isComposing || event.keyCode === 229) {
     return
   } else if (event.key === 'Enter') {
@@ -65,5 +65,7 @@ function initTerminal() {
   
   logOutput("Welcome!", output)
   
-  input.addEventListener("keydown", handleKeyEvent)
+  input.addEventListener("keydown", function (event) {
+    handleKeyEvent(event, input, output);
+  });
 }
