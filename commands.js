@@ -14,7 +14,7 @@ function curry(func) {
   };
 }
 
-function noCommand(args, output) {
+function invalidCommand(args, output) {
   logOutput("No such command.", output)
 }
 
@@ -41,11 +41,11 @@ let commandTable = {}
 
 function buildCommandTable() {
   let aliasTable = {}
-  for (const [command, fn] of BASE_COMMANDS.entries()) {
+  for (const [command, fn] of Object.entries(BASE_COMMANDS)) {
     aliasTable[command] = [command]
   }
   
-  for (const [command, fn] of BASE_COMMANDS.entries()) {
+  for (const [command, fn] of Object.entries(BASE_COMMANDS)) {
     for (i = 1; i < command.length; i++) {
       let subCommand = command.substring(0, i)
       if (subCommand in aliasTable) {
@@ -57,7 +57,7 @@ function buildCommandTable() {
     }
   }
   
-  for (const [command, commandList] of aliasTable.entries()) {
+  for (const [command, commandList] of Object.entries(aliasTable)) {
     if (commandList.length == 1) {
       // Single command
       commandTable[command] = BASE_COMMANDS[commandList[0]]
