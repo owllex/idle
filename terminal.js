@@ -1,5 +1,5 @@
-var input = document.getElementById("input");
-var output = document.getElementById("output"); 
+input = document.getElementById("input");
+output = document.getElementById("output"); 
 
 
 function enterText() {
