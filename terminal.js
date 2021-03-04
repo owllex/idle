@@ -8,7 +8,9 @@ function enterText(input, output) {
   input.value = ""
 }
 
-function initTerminal() {  
+function initTerminal() {
+  buildCommandTable()
+  
   input = document.getElementById("input");
   output = document.getElementById("output");
   
