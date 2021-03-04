@@ -11,7 +11,7 @@ function logOutput(text, output) {
 }
 
 function logInput(text, output) {
-  logWithClass(text, "input-content", output)
+  logWithClass("> " + text, "input-content", output)
 }
 
 function curry(func) {
