@@ -3,7 +3,12 @@ output = document.getElementById("output");
 
 
 function enterText() {
-  output.innerText += ("\n" + input.value)
+  let text = input.value
+  input.value = ""
+  if (!input.value) {
+    return;
+  }
+  output.innerText += ("\n" + text)
   input.value = ""
 }
 
@@ -11,7 +16,7 @@ function initTerminal() {
   input.addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      enterText()
+      enterText();
     }
   });
 }
