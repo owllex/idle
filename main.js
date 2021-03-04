@@ -28,19 +28,6 @@ function hookUpButtons() {
   document.getElementById("resetButton").addEventListener("click", () => resetGame(true))
 }
 
-function hookUpTerminal() {
-  let input = document.getElementById("input");
-  let output = document.getElementById("output"); 
-  
-  input.addEventListener("keyup", function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      output.innerText += ("\n" + input.value)
-      input.value = ""
-    }
-  });
-}
-
 document.addEventListener("unload", () => {
   saveGame()
 })
@@ -49,7 +36,7 @@ event("load", () => {
   setTimeout( () => {
     loadGame()
     hookUpButtons()
-    hookUpTerminal()
+    initTerminal()
     refreshUi()
     configureIntervals()
     console.log("Loaded")
