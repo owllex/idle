@@ -14,7 +14,7 @@ function logInput(text, output) {
   logWithClass("> " + text, "input-content", output)
 }
 
-function formatProgressBar(value, max, length) {
+function formatProgressBar(value, max, length, label, includeValues, showAsPercent) {
   const fractionalBlocks = value / max * (length - 2)
   const blocks = Math.floor(fractionalBlocks)
   const empties = (length - 2) - blocks
@@ -25,9 +25,16 @@ function formatProgressBar(value, max, length) {
   } else if (frac >= 0.33) {
     midBlock = "-"
   }
-  return "[" + "|".repeat(blocks) + midBlock + " ".repeat(empties) + "]"
+  let result = label + " [" + "|".repeat(blocks) + midBlock + " ".repeat(empties) + "]"
+  if (includeValues) {
+    if (showAsPercent) {
+      result += " " + Math.floor((value / max * 100)) + "%"
+    } else {
+      result += " " + value + " / " + max
+    }
+  }
+  return result
 }
-
 
 function invalidCommand(args, output) {
   logOutput("No such command.", output)
