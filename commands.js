@@ -59,10 +59,11 @@ function buildCommandTable() {
   
   for (const [command, commandList] of Object.entries(aliasTable)) {
     if (commandList.length == 1) {
-      // Single command
       commandTable[command] = BASE_COMMANDS[commandList[0]]
     } else {
-      commandTable[command] = curry(ambiguousCommand)(commandList))
+      commandTable[command] = (function(args, output) {
+        ambiguousCommand(commandList, output)
+      });
     }
   }        
 }
