@@ -15,10 +15,10 @@ function logInput(text, output) {
 }
 
 function formatProgressBar(value, max, length) {
-  const proportion = value / max * (length - 2)
-  const blocks = Math.floor(proportion)
-  const empties = max - blocks
-  const frac = proportion - blocks
+  const fractionalBlocks = value / max * (length - 2)
+  const blocks = Math.floor(fractionalBlocks)
+  const empties = (length - 2) - blocks
+  const frac = fractionalBlocks - blocks
   let midBlock = " "
   if (frac >= 0.5) {
     midBlock = "-"
