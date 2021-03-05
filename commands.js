@@ -55,7 +55,7 @@ function statsCommand(args, output) {
   let cha = wrapWithColor(`${stats.cha}`.padStart(STATS_PADDING), COLOR_GRAY)
   
   const progressBar = new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format()
-  let result = `Level ${role.level} ${user.currentRole}   ${progressBar}` + '\n'
+  let result = `Level ${role.level} ${user.currentRole}` + '\n' + progressBar + '\n'
   result += `STR ${str}   VIT ${vit}   DEX ${dex}   AGI ${agi}` + '\n' +
             `INT ${int}   WIS ${wis}   MAG ${mag}   CHA ${cha}`
   
