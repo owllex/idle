@@ -21,7 +21,7 @@ const EMPTY_BLOCK_CHAR = ' '
 
 class ProgressBar {
   constructor(value, max) {
-    this.value = value
+    this.value = Max.max(Math.min(value, max), 0)
     this.max = max
     this.length = DEFAULT_PROGRESS_BAR_LENGTH
     this.label = ''
