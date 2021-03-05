@@ -16,18 +16,20 @@ function logInput(text, output) {
   logWithClass("> " + text, "input-content", output)
 }
 
+// ▉▉▙
+const BLOCK_CHAR = '█'
+const HALF_BLOCK_CHAR = '▌'
+
 function formatProgressBar(value, max, length, label, includeValues, showAsPercent) {
   const fractionalBlocks = value / max * (length - 2)
   const blocks = Math.floor(fractionalBlocks)
   const empties = (length - 2) - blocks
   const frac = fractionalBlocks - blocks
   let midBlock = " "
-  if (frac >= 0.66) {
-    midBlock = "/"
-  } else if (frac >= 0.33) {
-    midBlock = "-"
+  if (frac >= 0.5) {
+    midBlock = HALF_BLOCK_CHAR
   }
-  let result = label + " [" + "|".repeat(blocks) + midBlock + " ".repeat(empties) + "]"
+  let result = label + " [" + BLOCK_CHAR.repeat(blocks) + midBlock + " ".repeat(empties) + "]"
   if (includeValues) {
     if (showAsPercent) {
       result += " " + Math.floor((value / max * 100)) + "%"
