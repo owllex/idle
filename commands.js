@@ -28,7 +28,7 @@ function formatProgressBar(value, max, length, label, includeValues, showAsPerce
   const blocks = Math.floor(fractionalBlocks)
   const empties = (length - 2) - blocks
   const frac = fractionalBlocks - blocks
-  let midBlock = " "
+  let midBlock = EMPTY_BLOCK_CHAR
   if (frac >= 0.5) {
     midBlock = HALF_BLOCK_CHAR
   }
