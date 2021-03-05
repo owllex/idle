@@ -21,7 +21,7 @@ const LEFT_BAR_CHAR = '['
 const RIGHT_BAR_CHAR = ']'
 const FULL_BLOCK_CHAR = '█'
 const HALF_BLOCK_CHAR = '▄'
-const EMPTY_BLOCK_CHAR = '_'
+const EMPTY_BLOCK_CHAR = ' '
 
 function formatProgressBar(value, max, length, label, includeValues, showAsPercent) {
   const fractionalBlocks = value / max * (length - 2)
