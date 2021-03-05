@@ -18,6 +18,8 @@ function newUser() {
     time: {
       lastUpdate: Date.now(),
     },
+    options: {
+    },
   }
 }
 
