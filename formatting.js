@@ -1,3 +1,5 @@
+const DEFAULT_PROGRESS_BAR_LENGTH = 22
+
 // ▉▉▙
 const LEFT_BAR_CHAR = '['
 const RIGHT_BAR_CHAR = ']'
@@ -24,4 +26,8 @@ function formatProgressBar(value, max, length, label, includeValues, showAsPerce
     }
   }
   return result
+}
+
+function formatDefaultProgressBar(value, max, label, includeValue, showAsPercent) {
+  return formatDefaultProgressBar(value, max, DEFAULT_PROGRESS_BAR_LENGTH, label, includeValue, showAsPercent)
 }
