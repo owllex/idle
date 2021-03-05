@@ -6,8 +6,19 @@ function logWithClass(text, className, output) {
   output.appendChild(preNode)
 }
 
+function logHtml(html, className, output) {
+  let preNode = document.createElement("PRE")
+  preNode.innerHtml = html
+  preNode.classList.add(className)
+  output.appendChild(preNode)
+}
+
 function logOutput(text, output) {
   logWithClass(text, "output-content", output)
+}
+
+function log(html, output) {
+  logHtml(html, "output-content", output)
 }
 
 function logInput(text, output) {
@@ -42,7 +53,7 @@ function vitalsCommand(args, output) {
   result += new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").includeValue().format()
   result += "\n" + new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").includeValue().format()
   result += "\n" + new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").includeValue().format()
-  logOutput(result, output)
+  log(result, output)
 }
 
 function experienceCommand(args, output) {
@@ -50,7 +61,7 @@ function experienceCommand(args, output) {
   let result = ""
   result += "Level " + role.level + " " + user.currentRole + "\n"
   result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").includeValue().format()
-  logOutput(result, output)
+  log(result, output)
 }
 
 const BASE_COMMANDS = {
