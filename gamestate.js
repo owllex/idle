@@ -7,6 +7,8 @@ function newUser() {
       base: getStartingStatBlock(),
       current: getStartingStatBlock(),
     },
+    inventory: {
+    },
     roles: {
       "Commoner": {
         level: 1,
