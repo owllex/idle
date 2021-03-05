@@ -78,9 +78,9 @@ function resetGameCommand(args, output) {
     log("Game Reset!", output)
     return
   }
-  let result = 'Are you sure you want to completely reset the game? ' +
-      wrapWithColor('This cannot be undone!', COLOR_RED) + '\n' +
-      '  If so, type "resetgame !"'
+  let result = wrapWithColor(
+    'Are you sure you want to completely reset the game? This cannot be undone!\n' +
+    '  If so, type "resetgame !"', COLOR_RED)
   log(result, output)
 }
 
