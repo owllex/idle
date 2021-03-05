@@ -106,7 +106,12 @@ function resetGameCommand(args, output) {
   log(result, output)
 }
 
+function clearCommand(args, output) {
+  output.innerHTML = ""
+}
+
 const BASE_COMMANDS = {
+  "clear": clearCommand,
   "experience": experienceCommand,
   "health": vitalsCommand,
   "help": helpCommand,
