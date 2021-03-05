@@ -1,5 +1,3 @@
-const DEFAULT_PROGRESS_BAR_LENGTH = 22
-
 function logWithClass(text, className, output) {
   let textNode = document.createTextNode(text)
   let preNode = document.createElement("PRE")
@@ -14,34 +12,6 @@ function logOutput(text, output) {
 
 function logInput(text, output) {
   logWithClass("> " + text, "input-content", output)
-}
-
-// ▉▉▙
-const LEFT_BAR_CHAR = '['
-const RIGHT_BAR_CHAR = ']'
-const FULL_BLOCK_CHAR = '█'
-const HALF_BLOCK_CHAR = '▄'
-const EMPTY_BLOCK_CHAR = ' '
-
-function formatProgressBar(value, max, length, label, includeValues, showAsPercent) {
-  const fractionalBlocks = value / max * (length - 2)
-  const blocks = Math.floor(fractionalBlocks)
-  const empties = (length - 2) - blocks
-  const frac = fractionalBlocks - blocks
-  let midBlock = EMPTY_BLOCK_CHAR
-  if (frac >= 0.5) {
-    midBlock = HALF_BLOCK_CHAR
-  }
-  let result = label + " " + LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
-      midBlock + EMPTY_BLOCK_CHAR.repeat(empties) + RIGHT_BAR_CHAR
-  if (includeValues) {
-    if (showAsPercent) {
-      result += " " + Math.floor((value / max * 100)) + "%"
-    } else {
-      result += " " + formatNumber(value) + " / " + formatNumber(max)
-    }
-  }
-  return result
 }
 
 function saveCommand(args, output) {
@@ -69,9 +39,9 @@ function scoreCommand(args, output) {
 
 function vitalsCommand(args, output) {
   let result = ""
-  result += formatProgressBar(user.vitals.hp, user.vitals.maxHp, DEFAULT_PROGRESS_BAR_LENGTH, "HP", true)
-  result += "\n" + formatProgressBar(user.vitals.mp, user.vitals.maxMp, DEFAULT_PROGRESS_BAR_LENGTH, "MP", true)
-  result += "\n" + formatProgressBar(user.vitals.st, user.vitals.maxSt, DEFAULT_PROGRESS_BAR_LENGTH, "ST", true)
+  result += formatDefaultProgressBar(user.vitals.hp, user.vitals.maxHp, "HP", true)
+  result += "\n" + formatDefaultProgressBar(user.vitals.mp, user.vitals.maxMp, "MP", true)
+  result += "\n" + formatDefaultProgressBar(user.vitals.st, user.vitals.maxSt, "ST", true)
   logOutput(result, output)
 }
 
@@ -79,7 +49,7 @@ function experienceCommand(args, output) {
   let role = user.roles[user.currentRole]
   let result = ""
   result += "Level " + role.level + " " + user.currentRole + "\n"
-  result += formatProgressBar(role.xp, xpForRoleLevel(role.level + 1), DEFAULT_PROGRESS_BAR_LENGTH, "XP", true)
+  result += formatProgressBar(role.xp, xpForRoleLevel(role.level + 1), "XP", true)
   logOutput(result, output)
 }
 
