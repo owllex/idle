@@ -31,7 +31,7 @@ function enterText(input, output) {
   } else {
     commandTable[command](words.slice(1), output)
   }
-  input.scrollIntoView()
+  input.scrollIntoViewIfNeeded()
 }
 
 function handleKeyEvent(event, input, output) {
