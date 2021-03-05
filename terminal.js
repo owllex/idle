@@ -63,7 +63,7 @@ function initTerminal() {
   input = document.getElementById("input");
   output = document.getElementById("output");
   
-  logOutput("Welcome!", output)
+  log("Welcome!", output)
   
   input.addEventListener("keydown", function (event) {
     handleKeyEvent(event, input, output);
