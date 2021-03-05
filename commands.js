@@ -8,7 +8,7 @@ function logWithClass(text, className, output) {
 
 function logHtml(html, className, output) {
   let preNode = document.createElement("PRE")
-  preNode.innerHtml = html
+  preNode.innerHTML = html
   preNode.classList.add(className)
   output.appendChild(preNode)
 }
