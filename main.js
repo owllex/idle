@@ -23,11 +23,6 @@ function configureIntervals() {
   }, 60000)
 }
 
-function hookUpButtons() {
-  document.getElementById("saveButton").addEventListener("click", () => saveGame(true))
-  document.getElementById("resetButton").addEventListener("click", () => resetGame(true))
-}
-
 document.addEventListener("unload", () => {
   saveGame()
 })
@@ -35,7 +30,6 @@ document.addEventListener("unload", () => {
 event("load", () => {
   setTimeout( () => {
     loadGame()
-    hookUpButtons()
     initTerminal()
     refreshUi()
     configureIntervals()
