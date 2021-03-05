@@ -45,18 +45,18 @@ const STATS_PADDING = 4
 function statsCommand(args, output) {
   let role = user.roles[user.currentRole]
   const stats = user.stats.current
-  let str = `${stats.str}`.padStart(STATS_PADDING)
-  let vit = `${stats.vit}`.padStart(STATS_PADDING)
-  let dex = `${stats.dex}`.padStart(STATS_PADDING)
-  let agi = `${stats.agi}`.padStart(STATS_PADDING)
-  let int = `${stats.int}`.padStart(STATS_PADDING)
-  let wis = `${stats.wis}`.padStart(STATS_PADDING)
-  let mag = `${stats.mag}`.padStart(STATS_PADDING)
-  let cha = `${stats.cha}`.padStart(STATS_PADDING)
+  let str = wrapWithColor(`${stats.str}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let vit = wrapWithColor(`${stats.vit}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let dex = wrapWithColor(`${stats.dex}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let agi = wrapWithColor(`${stats.agi}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let int = wrapWithColor(`${stats.int}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let wis = wrapWithColor(`${stats.wis}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let mag = wrapWithColor(`${stats.mag}`.padStart(STATS_PADDING), COLOR_GRAY)
+  let cha = wrapWithColor(`${stats.cha}`.padStart(STATS_PADDING), COLOR_GRAY)
   
   let result = `Level ${role.level} ${user.currentRole}` + '\n'
   result += `STR ${str}   VIT ${vit}   DEX ${dex}   AGI ${agi}` + '\n' +
-            `INT ${int}   WIS {$wis}   MAG ${mag}   CHA ${cha}`
+            `INT ${int}   WIS ${wis}   MAG ${mag}   CHA ${cha}`
   
   log(result, output)
 }
