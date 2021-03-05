@@ -1,3 +1,15 @@
+const COLOR_WHITE = 'white'
+const COLOR_RED = 'red'
+const COLOR_BLUE = 'blue'
+const COLOR_GREEN = 'green'
+const COLOR_YELLOW = 'yellow'
+const COLOR_MAGENTA = 'magenta'
+const COLOR_CYAN = 'cyan'
+
+function wrapWithColor(htmlString, colorCode) {
+  return `<span class=${colorCode}>${htmlString}</span>`
+}
+
 const DEFAULT_PROGRESS_BAR_LENGTH = 22
 
 // ▉▉▙
@@ -35,6 +47,11 @@ class ProgressBar {
     return this
   }
   
+  setColor(colorCode) {
+    this.colorCode = colorCode
+    return this
+  }
+  
   format() {
     const fractionalBlocks = this.value / this.max * (this.length - 2)
     const blocks = Math.floor(fractionalBlocks)
@@ -44,20 +61,21 @@ class ProgressBar {
     if (frac >= 0.5) {
       midBlock = HALF_BLOCK_CHAR
     }
-    let label = ''
-    if (this.label) {
-      label = this.label + " "
-    }
-    let result = label + LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
+    let result = LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
         midBlock + EMPTY_BLOCK_CHAR.repeat(empties) + RIGHT_BAR_CHAR
+    if (this.colorCode) {
+      result = wrapWithColor(result, this.colorCode)
+    }    
+    if (this.label) {
+      result = this.label + " " + result
+    }
     if (this.includeValue) {
       if (this.showAsPercent) {
-        result += " " + Math.floor(this.value / this.max * 100) + "%"
+        result += ` ${Math.floor(this.value / this.max * 100)}%`
       } else {
-        result += " " + formatNumber(this.value) + " / " + formatNumber(this.max)
+        result += ` ${formatNumber(this.value)} / ${formatNumber(this.max)}`
       }
     }
     return result
   }
 }
-
