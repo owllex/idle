@@ -16,7 +16,7 @@ const DEFAULT_PROGRESS_BAR_LENGTH = 22
 const LEFT_BAR_CHAR = '['
 const RIGHT_BAR_CHAR = ']'
 const FULL_BLOCK_CHAR = '█'
-const HALF_BLOCK_CHAR = '▄'
+const HALF_BLOCK_CHAR = '▌'
 const EMPTY_BLOCK_CHAR = ' '
 
 class ProgressBar {
