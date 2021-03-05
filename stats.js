@@ -94,7 +94,7 @@ function calculateDerivedStats(stats) {
 
 function updateStats() {
   // Reset stats
-  let newStats = user.stats.base
+  let newStats = {...user.stats.base}
   
   // Apply role bonuses
   for (role in user.roles) {
