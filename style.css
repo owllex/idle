@@ -156,3 +156,25 @@ body::after {
   border: none;
   color: inherit;
 }
+
+.color-white {
+  color: white;
+}
+.color-red {
+  color: red;
+}
+.color-blue {
+  color: blue;
+}
+.color-green {
+  color: green;
+}
+.color-yellow {
+  color: yellow;
+}
+.color-magenta {
+  color: magenta;
+}
+.color-cyan {
+  color: cyan;
+}
