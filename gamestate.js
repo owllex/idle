@@ -24,6 +24,7 @@ function newUser() {
 }
 
 user = newUser()
+updateStats()
 
 function saveGame(notify) {
   localStorage.setItem("user", JSON.stringify(user))
