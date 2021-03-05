@@ -6,9 +6,7 @@ function event(e, func) {
 }
 
 function tick() {
-  console.log("tick")
   grantXp(1)
-  refreshUi()
 }
 
 function configureIntervals() {
