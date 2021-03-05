@@ -45,9 +45,9 @@ function scoreCommand(args, output) {
 
 function vitalsCommand(args, output) {
   let result = ""
-  result += new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").setColor(COLOR_RED).includeValue().format()
-  result += "\n" + new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").setColor(COLOR_BLUE).includeValue().format()
-  result += "\n" + new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").setColor(COLOR_YELLOW).includeValue().format()
+  result += new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").setColor(COLOR_RED).showValue().format()
+  result += "\n" + new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").setColor(COLOR_BLUE).showValue().format()
+  result += "\n" + new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").setColor(COLOR_YELLOW).showValue().format()
   log(result, output)
 }
 
@@ -55,7 +55,7 @@ function experienceCommand(args, output) {
   let role = user.roles[user.currentRole]
   let result = ""
   result += "Level " + role.level + " " + user.currentRole + "\n"
-  result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).includeValue().format()
+  result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format()
   log(result, output)
 }
 
