@@ -61,6 +61,10 @@ function experienceCommand(args, output) {
 }
 
 function inventoryCommand(args, output) {
+  if (!user.inventory.length) {
+    log("Nothing in your inventory.", output)
+    return
+  }
   let result = "Inventory:\n"
   for (const [item, data] of Object.entries(user.inventory)) {
     if (data.quantity) {
