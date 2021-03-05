@@ -61,13 +61,13 @@ function experienceCommand(args, output) {
 }
 
 const BASE_COMMANDS = {
-  "vitals": vitalsCommand,
-  "health": vitalsCommand,
-  "xp": experienceCommand,
   "experience": experienceCommand,
-  "score": scoreCommand,
-  "save": saveCommand,
+  "health": vitalsCommand,
   "help": helpCommand,
+  "save": saveCommand,
+  "score": scoreCommand,
+  "vitals": vitalsCommand,
+  "xp": experienceCommand,
 }
 
 let commandTable = {}
