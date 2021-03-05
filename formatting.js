@@ -44,7 +44,11 @@ class ProgressBar {
     if (frac >= 0.5) {
       midBlock = HALF_BLOCK_CHAR
     }
-    let result = this.label + " " + LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
+    let label = ''
+    if (this.label) {
+      label = this.label + " "
+    }
+    let result = label + LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
         midBlock + EMPTY_BLOCK_CHAR.repeat(empties) + RIGHT_BAR_CHAR
     if (this.includeValue) {
       if (this.showAsPercent) {
