@@ -1,10 +1,10 @@
-const COLOR_WHITE = 'white'
-const COLOR_RED = 'red'
-const COLOR_BLUE = 'blue'
-const COLOR_GREEN = 'green'
-const COLOR_YELLOW = 'yellow'
-const COLOR_MAGENTA = 'magenta'
-const COLOR_CYAN = 'cyan'
+const COLOR_WHITE = 'color-white'
+const COLOR_RED = 'color-red'
+const COLOR_BLUE = 'color-blue'
+const COLOR_GREEN = 'color-green'
+const COLOR_YELLOW = 'color-yellow'
+const COLOR_MAGENTA = 'color-magenta'
+const COLOR_CYAN = 'color-cyan'
 
 function wrapWithColor(htmlString, colorCode) {
   return `<span class=${colorCode}>${htmlString}</span>`
