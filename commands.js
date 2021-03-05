@@ -73,7 +73,7 @@ function inventoryCommand(args, output) {
 }
 
 function resetGameCommand(args, output) {
-  if (args && args[0] == "!") {
+  if (args && args[0] == "resetgame" && args[1] == "!") {
     resetGame()
     log("Game Reset!", output)
     return
