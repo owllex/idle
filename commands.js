@@ -60,10 +60,23 @@ function experienceCommand(args, output) {
   log(result, output)
 }
 
+function inventoryCommand(args, output) {
+  let result = "Inventory:\n"
+  for (const [item, data] of Object.entries(user.inventory)) {
+    if (data.quantity) {
+      result += `  ${item} (${data.quantity})` + '\n'
+    } else {
+      result += `  ${item}` + '\n'
+    }
+  }
+  log(result, output)
+}
+
 const BASE_COMMANDS = {
   "experience": experienceCommand,
   "health": vitalsCommand,
   "help": helpCommand,
+  "inventory": inventoryCommand,
   "save": saveCommand,
   "score": scoreCommand,
   "vitals": vitalsCommand,
