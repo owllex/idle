@@ -25,6 +25,7 @@ function newUser() {
 
 user = newUser()
 updateStats()
+recoverVitals()
 
 function saveGame(notify) {
   localStorage.setItem("user", JSON.stringify(user))
@@ -48,6 +49,8 @@ function loadGame(notify) {
 
 function resetGame(notify) {
   user = newUser()
+  updateStats()
+  recoverVitals()
   saveGame(false)
   if (notify) {
     successMessage("Game reset")
