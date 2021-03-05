@@ -39,9 +39,9 @@ function scoreCommand(args, output) {
 
 function vitalsCommand(args, output) {
   let result = ""
-  result += formatDefaultProgressBar(user.vitals.hp, user.vitals.maxHp, "HP", true)
-  result += "\n" + formatDefaultProgressBar(user.vitals.mp, user.vitals.maxMp, "MP", true)
-  result += "\n" + formatDefaultProgressBar(user.vitals.st, user.vitals.maxSt, "ST", true)
+  result += new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").includeValue().format()
+  result += "\n" + new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").includeValue().format()
+  result += "\n" + new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").includeValue().format()
   logOutput(result, output)
 }
 
@@ -49,7 +49,7 @@ function experienceCommand(args, output) {
   let role = user.roles[user.currentRole]
   let result = ""
   result += "Level " + role.level + " " + user.currentRole + "\n"
-  result += formatProgressBar(role.xp, xpForRoleLevel(role.level + 1), "XP", true)
+  result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").includeValue().format()
   logOutput(result, output)
 }
 
