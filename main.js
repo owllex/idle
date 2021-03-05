@@ -29,7 +29,6 @@ event("load", () => {
   setTimeout( () => {
     loadGame()
     initTerminal()
-    refreshUi()
     configureIntervals()
     console.log("Loaded")
   }, 1)
