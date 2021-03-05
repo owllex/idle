@@ -40,8 +40,25 @@ function ambiguousCommand(commandList, output) {
   log(result, output)
 }
 
-function scoreCommand(args, output) {
-  log("<SCORE>", output)
+const STATS_PADDING = 4
+
+function statsCommand(args, output) {
+  let role = user.roles[user.currentRole]
+  const stats = user.stats.current
+  let str = `${stats.str}`.padStart(STATS_PADDING)
+  let vit = `${stats.vit}`.padStart(STATS_PADDING)
+  let dex = `${stats.dex}`.padStart(STATS_PADDING)
+  let agi = `${stats.agi}`.padStart(STATS_PADDING)
+  let int = `${stats.int}`.padStart(STATS_PADDING)
+  let wis = `${stats.wis}`.padStart(STATS_PADDING)
+  let mag = `${stats.mag}`.padStart(STATS_PADDING)
+  let cha = `${stats.cha}`.padStart(STATS_PADDING)
+  
+  let result = `Level ${role.level} ${user.currentRole}` + '\n'
+  result += `STR ${str}   VIT ${vit}   DEX ${dex}   AGI ${agi}` + '\n' +
+            `INT ${int}   WIS {$wis}   MAG ${mag}   CHA ${cha}`
+  
+  log(result, output)
 }
 
 function vitalsCommand(args, output) {
@@ -55,7 +72,7 @@ function vitalsCommand(args, output) {
 function experienceCommand(args, output) {
   let role = user.roles[user.currentRole]
   let result = ""
-  result += "Level " + role.level + " " + user.currentRole + "\n"
+  result += `Level ${role.level} ${user.currentRole}` + "\n"
   result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format()
   log(result, output)
 }
@@ -95,7 +112,7 @@ const BASE_COMMANDS = {
   "inventory": inventoryCommand,
   "resetgame": resetGameCommand,
   "save": saveCommand,
-  "score": scoreCommand,
+  "stats": statsCommand,
   "vitals": vitalsCommand,
   "xp": experienceCommand,
 }
