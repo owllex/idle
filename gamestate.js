@@ -38,6 +38,7 @@ function loadGame(notify) {
   let data = JSON.parse(localStorage.getItem("user"))
   if (data != null) {
     user = data;
+    updateStats()
   }
   if (notify) {
     successMessage("Loaded version " + user.version)
