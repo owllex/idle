@@ -55,13 +55,16 @@ class ProgressBar {
   format() {
     const fractionalBlocks = this.value / this.max * (this.length - 2)
     const blocks = Math.floor(fractionalBlocks)
-    const empties = (this.length - 3) - blocks
+    const empties = (this.length - 2) - blocks
     const frac = fractionalBlocks - blocks
     let midBlock = ''
     if (frac >= 0.5) {
       midBlock = HALF_BLOCK_CHAR
     } else if (frac > 0) {
       midBlock = EMPTY_BLOCK_CHAR
+    }
+    if (midBlock) {
+      empties -= 1
     }
     let result = LEFT_BAR_CHAR + FULL_BLOCK_CHAR.repeat(blocks) +
         midBlock + EMPTY_BLOCK_CHAR.repeat(empties) + RIGHT_BAR_CHAR
