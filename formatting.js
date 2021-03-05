@@ -32,13 +32,13 @@ class ProgressBar {
     return this
   }
   
-  includeValue() {
-    this.includeValue = true
+  showValue() {
+    this.showValueSetting = true
     return this
   }
   
   showAsPercent() {
-    this.showAsPercent = true
+    this.showAsPercentSetting = true
     return this
   }
   
@@ -71,8 +71,8 @@ class ProgressBar {
     if (this.label) {
       result = this.label + " " + result
     }
-    if (this.includeValue) {
-      if (this.showAsPercent) {
+    if (this.showValueSetting) {
+      if (this.showAsPercentSetting) {
         result += ` ${Math.floor(this.value / this.max * 100)}%`
       } else {
         result += ` ${formatNumber(this.value)} / ${formatNumber(this.max)}`
