@@ -31,7 +31,8 @@ function invalidCommand(args, output) {
 }
 
 function helpCommand(args, output) {
-  log("This will be more helpful someday.", output)
+  let result = 'Try one of the following:\n' + Object.keys(BASE_COMMANDS).join(', ')
+  log(result, output)
 }
 
 function ambiguousCommand(commandList, output) {
