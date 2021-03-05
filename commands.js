@@ -13,10 +13,6 @@ function logHtml(html, className, output) {
   output.appendChild(preNode)
 }
 
-function logOutput(text, output) {
-  logWithClass(text, "output-content", output)
-}
-
 function log(html, output) {
   logHtml(html, "output-content", output)
 }
@@ -27,25 +23,24 @@ function logInput(text, output) {
 
 function saveCommand(args, output) {
   saveGame()
-  logOutput("Game Saved!", output)
+  log("Game Saved!", output)
 }
 
 function invalidCommand(args, output) {
-  logOutput("No such command.", output)
+  log("No such command.", output)
 }
 
 function helpCommand(args, output) {
-  logOutput("This will be more helpful someday.", output)
+  log("This will be more helpful someday.", output)
 }
 
 function ambiguousCommand(commandList, output) {
   let result = "Which of the following did you mean? " + commandList.join(', ')
-  logOutput(result, output)
+  log(result, output)
 }
 
 function scoreCommand(args, output) {
-  
-  logOutput("<SCORE>", output)
+  log("<SCORE>", output)
 }
 
 function vitalsCommand(args, output) {
