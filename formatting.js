@@ -5,6 +5,7 @@ const COLOR_GREEN = 'color-green'
 const COLOR_YELLOW = 'color-yellow'
 const COLOR_MAGENTA = 'color-magenta'
 const COLOR_CYAN = 'color-cyan'
+const COLOR_GRAY = 'color-gray'
 
 function wrapWithColor(htmlString, colorCode) {
   return `<span class=${colorCode}>${htmlString}</span>`
