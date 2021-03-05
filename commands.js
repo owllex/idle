@@ -72,11 +72,24 @@ function inventoryCommand(args, output) {
   log(result, output)
 }
 
+function resetGameCommand(args, output) {
+  if (args && args[1] == "!") {
+    resetGame()
+    log("Game Reset!", output)
+    return
+  }
+  let result = 'Are you sure you want to completely reset the game? ' +
+      wrapWithColor('This cannot be undone!') + '\n' +
+      '  If so, type "resetgame !"'
+  log(result, output)
+}
+
 const BASE_COMMANDS = {
   "experience": experienceCommand,
   "health": vitalsCommand,
   "help": helpCommand,
   "inventory": inventoryCommand,
+  "resetgame": resetGameCommand,
   "save": saveCommand,
   "score": scoreCommand,
   "vitals": vitalsCommand,
