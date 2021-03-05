@@ -22,15 +22,15 @@ const allStats = [
 
 function getStartingVitals() {
   return {
-    hp: 10, mp: 10, st: 10,
-    maxHp: 10, maxMp: 10, maxSt: 10,
+    hp: 1, mp: 1, st: 1,
+    maxHp: 1, maxMp: 1, maxSt: 1,
   }
 }
 
 function getStartingStatBlock() {
   return {
     str: 3, vit: 3, dex: 3, agi: 3, int: 3, wis: 3, mag: 3, cha: 3,
-    maxHp: 10, maxMp: 10, maxSt: 10,
+    maxHp: 1, maxMp: 1, maxSt: 1,
   }
 }
 
