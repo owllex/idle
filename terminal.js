@@ -29,7 +29,7 @@ function enterText(input, output) {
   if (!(command in commandTable)) {
     invalidCommand(null, output)
   } else {
-    commandTable[command](words.slice(1), output)
+    commandTable[command](words, output)
   }
   input.scrollIntoViewIfNeeded()
 }
