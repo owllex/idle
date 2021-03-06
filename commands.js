@@ -115,7 +115,7 @@ function bonusBlockToString(block) {
       statLines.push(`${data.abbrev} ${numberText}`)
     }
   }
-  if (!statLines) {
+  if (!statLines.length) {
     return "Nothing"
   }
   return statLines.join(', ')
