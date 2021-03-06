@@ -133,9 +133,9 @@ function rolesCommand(args, output) {
     } else if (index == 1) {
       lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
     }
-    lines.push(`║${role}, Level ${data.level}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
-    lines.push(`║  Active bonus: ${bonusBlockToString(bonusBlock.active)}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
-    lines.push(`║  Global bonus: ${bonusBlockToString(bonusBlock.global)}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    lines.push(`║${role}, Level ${data.level}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    lines.push(`║  Active bonus: ${bonusBlockToString(bonusBlock.active)}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    lines.push(`║  Global bonus: ${bonusBlockToString(bonusBlock.global)}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
     if (index == lastIndex && index % 2 == 0) {
       lines.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╝`)
     } else if ((index == lastIndex || index == lastIndex - 1) && index % 2 != 0) {
