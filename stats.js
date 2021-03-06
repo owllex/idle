@@ -1,16 +1,27 @@
-const ALL_STATS = [
-  "str", // Strength: brute damage, physical skill prowess, HP (secondary)
-  "vit", // Vitality: HP (primary), SP (co-primary), resistance to physical effects
-  "dex", // Dexterity: finesse damage, fine skill prowess
-  "agi", // Agility: Initiative, speed, evasion, SP (co-primary)
-  "int", // Intelligence: arcane magic damage, MP (secondary)
-  "wis", // Wisdom: nature magic damage, resistance to magical effects, MP (secondary)
-  "mag", // Magic: MP (primary), overall magic damage
-  "cha", // Charisma: interaction prowess, light/dark magic damage, MP (secondary)
-  "maxHp", // Max hit points
-  "maxMp", // Max magic points
-  "maxSt" // Max stamina
-]
+const ALL_STATS = {
+  // Strength: brute damage, physical skill prowess, HP (secondary)
+  "str": {abbrev: "STR", name: "Strength"},
+  // Vitality: HP (primary), SP (co-primary), resistance to physical effects
+  "vit": {abbrev: "VIT", name: "Vitality"}, 
+  // Dexterity: finesse damage, fine skill prowess
+  "dex": {abbrev: "DEX", name: "Dexterity"},
+  // Agility: Initiative, speed, evasion, SP (co-primary)
+  "agi": {abbrev: "AGI", name: "Agility"},
+  // Intelligence: arcane magic damage, MP (secondary)
+  "int": {abbrev: "INT", name: "Intellect"},
+  // Wisdom: nature magic damage, resistance to magical effects, MP (secondary)
+  "wis": {abbrev: "WIS", name: "Wisdom"},
+  // Magic: MP (primary), overall magic damage
+  "mag": {abbrev: "MAG", name: "Magic"},
+  // Charisma: interaction prowess, light/dark magic damage, MP (secondary)  
+  "cha": {abbrev: "CHA", name: "Charisma"},
+  // Max hit points
+  "maxHp": {abbrev: "HP", name: "Hit Points"},
+  // Max magic points 
+  "maxMp": {abbrev: "MP", name: "Mana Points"},
+  // Max stamina 
+  "maxSt": {abbrev: "ST", name: "Stamina"},
+}
 
 function getStartingVitals() {
   return {
