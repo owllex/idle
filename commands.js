@@ -125,7 +125,7 @@ function bonusBlockToString(block) {
     }
   }
   if (!statLines.length) {
-    return "Nothing"
+    return wrapWithColor("Nothing", COLOR_GRAY)
   }
   return statLines.join(', ')
 }
