@@ -172,9 +172,9 @@ function rolesCommand(args, output) {
       // This row has a second item.
       secondRoleOutput = buildRoleOutput(validRoles[i+1], user.roles[validRoles[i+1]])
 
-      // Add pipes to each line.
+      // Add pipes to each line. Add an extra space since we're not adding a left-side character.
       for (let j = 0; j < secondRoleOutput.length; j++) {
-        secondRoleOutput[j] = `${secondRoleOutput[j]}║`
+        secondRoleOutput[j] = `${secondRoleOutput[j]} ║`
       }
 
       // Prepend header line.
