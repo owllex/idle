@@ -21,6 +21,7 @@ function smartPadEnd(str, targetLength, padString) {
     }
     if (str[i] == '>' && inHtml) {
       inHtml = false
+      newLength++
     }
     if (inHtml) {
       newLength++
