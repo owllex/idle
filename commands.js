@@ -208,12 +208,18 @@ function clearCommand(args, output) {
   output.innerHTML = ""
 }
 
+function reloadCommand(args, output) {
+  saveGame()
+  location.reload()
+}
+
 const BASE_COMMANDS = {
   "clear": clearCommand,
   "experience": experienceCommand,
   "health": vitalsCommand,
   "help": helpCommand,
   "inventory": inventoryCommand,
+  "reload": reloadCommand,
   "resetgame": resetGameCommand,
   "roles": rolesCommand,
   "save": saveCommand,
