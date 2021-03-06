@@ -120,34 +120,81 @@ function bonusBlockToString(block) {
 
 const ROLE_BOX_LENGTH = 38
 
+// Generate a block of role data of uniform length ROLE_BOX_LENGTH without edge characters.
+function buildRoleOutput(role, data) {
+  let lines = []
+  const bonusBlock = getBonusBlockForRole(role, data.level)
+  lines.push(`${role}, Level ${data.level}`.padEnd(ROLE_BOX_LENGTH - 1, ' '))
+  lines.push(`  Active bonus: ${bonusBlockToString(bonusBlock.active)}`.padEnd(ROLE_BOX_LENGTH - 1, ' '))
+  lines.push(`  Global bonus: ${bonusBlockToString(bonusBlock.global)}`.padEnd(ROLE_BOX_LENGTH - 1, ' '))
+  return lines
+}
+
 function rolesCommand(args, output) {
   let lines = []
+  const validRoles = []
+  for (const role of ALL_ROLES) {
+    if (user.roles[role]) {
+      validRoles.push(role)
+    }
+  }
+  validRoles.sort()
   let index = 0
-  const lastIndex = ALL_ROLES.length - 1
-  for (const [role, data] of Object.entries(ALL_ROLES)) {
-    const bonusBlock = getBonusBlockForRole(role, data.level)
-    if (index == 0) {
-      let rightCorner = index == lastIndex ? '╗' : '╦'
-      if (index != lastIndex)
-      lines.push(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
-    } else if (index == 1) {
-      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
+  const lastIndex = validRoles.length - 1
+  // Build output in pairs of roles.
+  for (i = 0; i < validRoles.length; i += 2) {
+    let role = user.roles[validRoles[i]]
+    let firstRoleOutput = buildRoleOutput(role, user.roles[role])
+    if (i == 0) {
+      // Prepend header line.
+      let rightCorner = i >= lastIndex ? '╗' : '╦'
+      firstRoleOutput.unshift(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
     }
-    lines.push(`║${role}, Level ${data.level}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
-    lines.push(`║  Active bonus: ${bonusBlockToString(bonusBlock.active)}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
-    lines.push(`║  Global bonus: ${bonusBlockToString(bonusBlock.global)}`.padEnd(ROLE_BOX_LENGTH - 1, ' ') + '║')
-    if (index == lastIndex && index % 2 == 0) {
-      lines.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╝`)
-    } else if ((index == lastIndex || index == lastIndex - 1) && index % 2 != 0) {
-      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╝`)
-    } else if (index == lastIndex - 1 && index % 2 == 0) {
-      lines.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╩`)
-    } else if (index % 2 == 0) {
-      lines.push(`╠${'═'.repeat(ROLE_BOX_LENGTH - 2)}╬`)
+
+    // Add pipes to each line.
+    for (j = 0; j < firstRoleOutput.length; j++) {
+      const leftSide = i % 2 == 0 ? '║' : ''
+      firstRoleOutput[j] = `${leftSide}${firstRoleOutput[j]}║`
+    }
+
+    let secondRoleOutput = []
+    if (i >= lastIndex) {
+      // This row does not have a second item, which means it's the last row.
+      // Append footer line.
+      firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╝`)
+      
+      // Copy all lines to output as-is.
+      lines = lines.concat(firstRoleOutput)
     } else {
-      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╣`)
-    }
-    index++
+      // This row has a second item.
+      role = user.roles[validRoles[i+1]]
+      secondRoleOutput = buildRoleOutput(role, user.roles[role])
+
+      // Prepend header line.
+      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
+      // Add pipes to each line.
+      for (j = 0; j < secondRoleOutput.length; j++) {
+        secondRoleOutput[j] = `${secondRoleOutput[j]}║`
+      }
+      
+      // Add footers for both first and second blocks.
+      if (i + 2 <= lastIndex) {
+        // Another row below the left column.
+        firstRoleOutput.push(`╠${'═'.repeat(ROLE_BOX_LENGTH - 2)}╬`)
+      } else {
+        firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╩`)
+      }
+      if (i + 3 <= lastIndex) {
+        // Another row below the right column.
+        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╣`)
+      } else {
+        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╝`)
+      }
+      // Merge alternating lines.
+      for (let j = 0; j < firstRoleOutput.length; j++) {
+        lines.push(firstRoleOutput[j] + secondRoleOutput[j])
+      }
+    }  
   }
   log(lines.join('\n'), output)
 }
