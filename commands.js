@@ -115,6 +115,9 @@ function bonusBlockToString(block) {
       statLines.push(`${data.abbrev} ${numberText}`)
     }
   }
+  if (!statLines) {
+    return "Nothing"
+  }
   return statLines.join(', ')
 }
 
@@ -144,16 +147,17 @@ function rolesCommand(args, output) {
   // Build output in pairs of roles.
   for (i = 0; i < validRoles.length; i += 2) {
     let firstRoleOutput = buildRoleOutput(validRoles[i], user.roles[validRoles[i]])
-    if (i == 0) {
-      // Prepend header line.
-      let rightCorner = i >= lastIndex ? '╗' : '╦'
-      firstRoleOutput.unshift(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
-    }
-
+    
     // Add pipes to each line.
     for (j = 0; j < firstRoleOutput.length; j++) {
       const leftSide = i % 2 == 0 ? '║' : ''
       firstRoleOutput[j] = `${leftSide}${firstRoleOutput[j]}║`
+    }
+
+    if (i == 0) {
+      // Prepend header line.
+      let rightCorner = i >= lastIndex ? '╗' : '╦'
+      firstRoleOutput.unshift(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
     }
 
     let secondRoleOutput = []
@@ -168,12 +172,13 @@ function rolesCommand(args, output) {
       // This row has a second item.
       secondRoleOutput = buildRoleOutput(validRoles[i+1], user.roles[validRoles[i+1]])
 
-      // Prepend header line.
-      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
       // Add pipes to each line.
       for (j = 0; j < secondRoleOutput.length; j++) {
         secondRoleOutput[j] = `${secondRoleOutput[j]}║`
       }
+
+      // Prepend header line.
+      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
       
       // Add footers for both first and second blocks.
       if (i + 2 <= lastIndex) {
