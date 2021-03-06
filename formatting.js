@@ -13,7 +13,7 @@ function wrapWithColor(htmlString, colorCode) {
 
 // Like string.padEnd, but doesn't count HTML against the length.
 function smartPadEnd(str, targetLength, padString) {
-  const newLength = targetLength
+  let newLength = targetLength
   let inHtml = false
   for (i = 0; i < str.length; i++) {
     if (str[i] == '<' && !inHtml) {
