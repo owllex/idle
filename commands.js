@@ -145,11 +145,11 @@ function rolesCommand(args, output) {
   let index = 0
   const lastIndex = validRoles.length - 1
   // Build output in pairs of roles.
-  for (i = 0; i < validRoles.length; i += 2) {
+  for (let i = 0; i < validRoles.length; i += 2) {
     let firstRoleOutput = buildRoleOutput(validRoles[i], user.roles[validRoles[i]])
     
     // Add pipes to each line.
-    for (j = 0; j < firstRoleOutput.length; j++) {
+    for (let j = 0; j < firstRoleOutput.length; j++) {
       const leftSide = i % 2 == 0 ? '║' : ''
       firstRoleOutput[j] = `${leftSide}${firstRoleOutput[j]}║`
     }
@@ -173,7 +173,7 @@ function rolesCommand(args, output) {
       secondRoleOutput = buildRoleOutput(validRoles[i+1], user.roles[validRoles[i+1]])
 
       // Add pipes to each line.
-      for (j = 0; j < secondRoleOutput.length; j++) {
+      for (let j = 0; j < secondRoleOutput.length; j++) {
         secondRoleOutput[j] = `${secondRoleOutput[j]}║`
       }
 
@@ -229,7 +229,7 @@ function buildCommandTable() {
   }
   
   for (const [command, fn] of Object.entries(BASE_COMMANDS)) {
-    for (i = 1; i < command.length; i++) {
+    for (let i = 1; i < command.length; i++) {
       let subCommand = command.substring(0, i)
       if (subCommand in aliasTable) {
         // Collision
