@@ -27,11 +27,13 @@ function smartPadEnd(str, targetLength, padString) {
     }
   }
   str.padEnd(newLength, padString)
+  return str
 }
 
 // Like string.padStart, but doesn't count HTML against the length.
 function smartPadStart(str, targetLength, padString) {
   str.padStart(targetLength, padString)
+  return str
 }
 
 const DEFAULT_PROGRESS_BAR_LENGTH = 22
