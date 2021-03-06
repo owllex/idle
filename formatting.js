@@ -15,7 +15,7 @@ function wrapWithColor(htmlString, colorCode) {
 function smartPadEnd(str, targetLength, padString) {
   let newLength = targetLength
   let inHtml = false
-  for (i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     if (str[i] == '<' && !inHtml) {
       inHtml = true
     }
