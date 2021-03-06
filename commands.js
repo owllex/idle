@@ -143,8 +143,7 @@ function rolesCommand(args, output) {
   const lastIndex = validRoles.length - 1
   // Build output in pairs of roles.
   for (i = 0; i < validRoles.length; i += 2) {
-    let role = user.roles[validRoles[i]]
-    let firstRoleOutput = buildRoleOutput(role, user.roles[role])
+    let firstRoleOutput = buildRoleOutput(validRoles[i], user.roles[validRoles[i]])
     if (i == 0) {
       // Prepend header line.
       let rightCorner = i >= lastIndex ? '╗' : '╦'
@@ -167,8 +166,7 @@ function rolesCommand(args, output) {
       lines = lines.concat(firstRoleOutput)
     } else {
       // This row has a second item.
-      role = user.roles[validRoles[i+1]]
-      secondRoleOutput = buildRoleOutput(role, user.roles[role])
+      secondRoleOutput = buildRoleOutput(validRoles[i+1], user.roles[validRoles[i+1]])
 
       // Prepend header line.
       secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
