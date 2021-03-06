@@ -106,6 +106,52 @@ function resetGameCommand(args, output) {
   log(result, output)
 }
 
+const ROLE_BOX_LENGTH = 38
+
+function bonusBlockToString(block) {
+  let statLines = []
+  for (const [stat, data] of Object.entries(ALL_STATS)) {
+    if (block[stat]) {
+      const sign = block[stat] >= 0 ? '+' : '-'
+      const numberText = wrapWithColor(`${sign}${block[stat]}`, COLOR_GRAY)
+      statLines.push(`${data.abbrev} ${numberText}`)
+    }
+  }
+  return statLines.join(', ')
+}
+
+function rolesCommand(args, output) {
+  let lines = []
+  let index = 0
+  const lastIndex = ALL_ROLES.length - 1
+  for (const [role, data] of Object.entries(ALL_ROLES)) {
+    const bonusBlock = getBonusBlockForRole(role, data.level)
+    if (index == 0) {
+      let rightCorner = index == lastIndex ? '╗' : '╦'
+      if (index != lastIndex)
+      lines.push(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
+    } else if (index == 1) {
+      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
+    }
+    lines.push(`║${role}, Level ${data.level}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    lines.push(`║  Active bonus: ${bonusBlockToString(bonusBlock.active)}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    lines.push(`║  Global bonus: ${bonusBlockToString(bonusBlock.global)}`.padRight(ROLE_BOX_LENGTH - 1, ' ') + '║')
+    if (index == lastIndex && index % 2 == 0) {
+      lines.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╝`)
+    } else if ((index == lastIndex || index == lastIndex - 1) && index % 2 != 0) {
+      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╝`)
+    } else if (index == lastIndex - 1 && index % 2 == 0) {
+      lines.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╩`)
+    } else if (index % 2 == 0) {
+      lines.push(`╠${'═'.repeat(ROLE_BOX_LENGTH - 2)}╬`)
+    } else {
+      lines.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╣`)
+    }
+    index++
+  }
+  log(lines.join('\n'), output)
+}
+
 function clearCommand(args, output) {
   output.innerHTML = ""
 }
@@ -117,6 +163,7 @@ const BASE_COMMANDS = {
   "help": helpCommand,
   "inventory": inventoryCommand,
   "resetgame": resetGameCommand,
+  "roles": rolesCommand,
   "save": saveCommand,
   "stats": statsCommand,
   "vitals": vitalsCommand,
