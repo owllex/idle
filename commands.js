@@ -106,8 +106,6 @@ function resetGameCommand(args, output) {
   log(result, output)
 }
 
-const ROLE_BOX_LENGTH = 38
-
 function bonusBlockToString(block) {
   let statLines = []
   for (const [stat, data] of Object.entries(ALL_STATS)) {
@@ -119,6 +117,8 @@ function bonusBlockToString(block) {
   }
   return statLines.join(', ')
 }
+
+const ROLE_BOX_LENGTH = 38
 
 function rolesCommand(args, output) {
   let lines = []
