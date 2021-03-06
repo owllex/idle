@@ -127,9 +127,9 @@ const ROLE_BOX_LENGTH = 38
 function buildRoleOutput(role, data) {
   let lines = []
   const bonusBlock = getBonusBlockForRole(role, data.level)
-  lines.push(smartPadEnd(`${role}, Level ${data.level}`, ROLE_BOX_LENGTH - 1, ' '))
-  lines.push(smartPadEnd(`  Active bonus: ${bonusBlockToString(bonusBlock.active)}`, ROLE_BOX_LENGTH - 1, ' '))
-  lines.push(smartPadEnd(`  Global bonus: ${bonusBlockToString(bonusBlock.global)}`, ROLE_BOX_LENGTH - 1, ' '))
+  lines.push(smartPadEnd(`${role}, Level ${data.level}`, ROLE_BOX_LENGTH, ' '))
+  lines.push(smartPadEnd(`  Active bonus: ${bonusBlockToString(bonusBlock.active)}`, ROLE_BOX_LENGTH, ' '))
+  lines.push(smartPadEnd(`  Global bonus: ${bonusBlockToString(bonusBlock.global)}`, ROLE_BOX_LENGTH, ' '))
   return lines
 }
 
@@ -157,14 +157,14 @@ function rolesCommand(args, output) {
     if (i == 0) {
       // Prepend header line.
       let rightCorner = i >= lastIndex ? '╗' : '╦'
-      firstRoleOutput.unshift(`╔${'═'.repeat(ROLE_BOX_LENGTH - 2)}${rightCorner}`)
+      firstRoleOutput.unshift(`╔${'═'.repeat(ROLE_BOX_LENGTH)}${rightCorner}`)
     }
 
     let secondRoleOutput = []
     if (i >= lastIndex) {
       // This row does not have a second item, which means it's the last row.
       // Append footer line.
-      firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╝`)
+      firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH)}╝`)
       
       // Copy all lines to output as-is.
       lines = lines.concat(firstRoleOutput)
@@ -178,20 +178,20 @@ function rolesCommand(args, output) {
       }
 
       // Prepend header line.
-      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╗`)
+      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╗`)
       
       // Add footers for both first and second blocks.
       if (i + 2 <= lastIndex) {
         // Another row below the left column.
-        firstRoleOutput.push(`╠${'═'.repeat(ROLE_BOX_LENGTH - 2)}╬`)
+        firstRoleOutput.push(`╠${'═'.repeat(ROLE_BOX_LENGTH)}╬`)
       } else {
-        firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH - 2)}╩`)
+        firstRoleOutput.push(`╚${'═'.repeat(ROLE_BOX_LENGTH)}╩`)
       }
       if (i + 3 <= lastIndex) {
         // Another row below the right column.
-        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╣`)
+        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╣`)
       } else {
-        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH - 1)}╝`)
+        secondRoleOutput.push(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╝`)
       }
       // Merge alternating lines.
       for (let j = 0; j < firstRoleOutput.length; j++) {
