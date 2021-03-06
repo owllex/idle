@@ -11,6 +11,16 @@ function wrapWithColor(htmlString, colorCode) {
   return `<span class=${colorCode}>${htmlString}</span>`
 }
 
+// Like string.padEnd, but doesn't count HTML against the length.
+function smartPadEnd(str, targetLength, padString) {
+  str.padEnd(targetLength, padString)
+}
+
+// Like string.padStart, but doesn't count HTML against the length.
+function smartPadStart(str, targetLength, padString) {
+  str.padStart(targetLength, padString)
+}
+
 const DEFAULT_PROGRESS_BAR_LENGTH = 22
 
 // ▉▉▙
