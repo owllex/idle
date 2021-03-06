@@ -39,8 +39,7 @@ function getStartingStatBlock() {
 
 function addStatBlocks(left, right) {
   var result = left
-  for (i in ALL_STATS) {
-    let stat = ALL_STATS[i]
+  for (const stat of Object.keys(ALL_STATS)) {
     if (stat in right) {
       if (stat in result) {
         result[stat] += right[stat]
