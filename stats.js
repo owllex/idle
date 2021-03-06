@@ -13,7 +13,7 @@ const ALL_STATS = {
   "wis": {abbrev: "WIS", name: "Wisdom"},
   // Magic: MP (primary), overall magic damage
   "mag": {abbrev: "MAG", name: "Magic"},
-  // Charisma: interaction prowess, light/dark magic damage, MP (secondary)  
+  // Charisma: interaction prowess, light/dark magic damage 
   "cha": {abbrev: "CHA", name: "Charisma"},
   // Max hit points
   "maxHp": {abbrev: "HP", name: "Hit Points"},
@@ -71,7 +71,7 @@ function recoverVitals() {
 function calculateDerivedStats(stats) {
   return {
     maxHp: Math.floor(stats.maxHp + stats.vit * 2 + stats.str),
-    maxMp: Math.floor(stats.maxMp + stats.mag + (stats.int + stats.wis + stats.cha) / 3),
+    maxMp: Math.floor(stats.maxMp + stats.mag * 2 + stats.int + stats.wis),
     maxSt: Math.floor(stats.maxSt + stats.vit + stats.agi),
   }
 }
