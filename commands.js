@@ -136,7 +136,11 @@ const ROLE_BOX_LENGTH = 38
 function buildRoleOutput(role, data) {
   let lines = []
   const bonusBlock = getBonusBlockForRole(role, data.level)
-  lines.push(smartPadEnd(`${role}, Level ${data.level}`, ROLE_BOX_LENGTH, ' '))
+  if (user.currentRole == role) {
+    lines.push(smartPadEnd(wrapWithColor(`${role}, Level ${data.level}`, COLOR_YELLOW), ROLE_BOX_LENGTH, ' '))
+  } else {
+    lines.push(smartPadEnd(`${role}, Level ${data.level}`, ROLE_BOX_LENGTH, ' '))
+  }
   lines.push(smartPadEnd(`  Active bonus: ${bonusBlockToString(bonusBlock.active)}`, ROLE_BOX_LENGTH, ' '))
   lines.push(smartPadEnd(`  Global bonus: ${bonusBlockToString(bonusBlock.global)}`, ROLE_BOX_LENGTH, ' '))
   return lines
