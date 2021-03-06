@@ -178,7 +178,9 @@ function rolesCommand(args, output) {
       }
 
       // Prepend header line.
-      secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╗`)
+      if (i == 1) {
+        secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╗`)
+      }
       
       // Add footers for both first and second blocks.
       if (i + 2 <= lastIndex) {
