@@ -178,7 +178,7 @@ function rolesCommand(args, output) {
       }
 
       // Prepend header line.
-      if (i == 1) {
+      if (i == 0) {
         secondRoleOutput.unshift(`${'═'.repeat(ROLE_BOX_LENGTH + 1)}╗`)
       }
       
