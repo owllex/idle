@@ -1,4 +1,4 @@
-const allRoles = [
+const ALL_ROLES = [
   "Commoner",
   "Fighter",
   "Rogue",
