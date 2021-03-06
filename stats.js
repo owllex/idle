@@ -1,4 +1,4 @@
-const allStats = [
+const ALL_STATS = [
   "str", // Strength: brute damage, physical skill prowess, HP (secondary)
   "vit", // Vitality: HP (primary), SP (co-primary), resistance to physical effects
   "dex", // Dexterity: finesse damage, fine skill prowess
@@ -28,8 +28,8 @@ function getStartingStatBlock() {
 
 function addStatBlocks(left, right) {
   var result = left
-  for (i in allStats) {
-    let stat = allStats[i]
+  for (i in ALL_STATS) {
+    let stat = ALL_STATS[i]
     if (stat in right) {
       if (stat in result) {
         result[stat] += right[stat]
