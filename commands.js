@@ -40,6 +40,22 @@ function ambiguousCommand(commandList, output) {
   log(result, output)
 }
 
+function getVitals() {
+  let lines = []
+  lines.push(new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").setColor(COLOR_RED).showValue().format())
+  lines.push(new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").setColor(COLOR_BLUE).showValue().format())
+  lines.push(new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").setColor(COLOR_YELLOW).showValue().format())
+  return lines
+}
+
+function getRoleAndXp() {
+  let role = user.roles[user.currentRole]  
+  let lines = []
+  lines.push(`Level ${role.level} ${user.currentRole}`)
+  lines.push(new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format())
+  return lines
+}
+
 const STATS_PADDING = 4
 
 function statsCommand(args, output) {
@@ -54,28 +70,21 @@ function statsCommand(args, output) {
   let mag = wrapWithColor(`${stats.mag}`.padStart(STATS_PADDING), COLOR_GRAY)
   let cha = wrapWithColor(`${stats.cha}`.padStart(STATS_PADDING), COLOR_GRAY)
   
-  const progressBar = new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format()
-  let result = `Level ${role.level} ${user.currentRole}` + '\n' + progressBar + '\n'
-  result += `STR ${str}   VIT ${vit}   DEX ${dex}   AGI ${agi}` + '\n' +
-            `INT ${int}   WIS ${wis}   MAG ${mag}   CHA ${cha}`
+  let lines = getRoleAndXp()
+  lines.push(`STR ${str}   VIT ${vit}   DEX ${dex}   AGI ${agi}`)
+  lines.push(`INT ${int}   WIS ${wis}   MAG ${mag}   CHA ${cha}`)
   
-  log(result, output)
+  lines = lines.concat(getVitals())
+  
+  log(lines.join('\n'), output)
 }
 
 function vitalsCommand(args, output) {
-  let result = ""
-  result += new ProgressBar(user.vitals.hp, user.vitals.maxHp).setLabel("HP").setColor(COLOR_RED).showValue().format()
-  result += "\n" + new ProgressBar(user.vitals.mp, user.vitals.maxMp).setLabel("MP").setColor(COLOR_BLUE).showValue().format()
-  result += "\n" + new ProgressBar(user.vitals.st, user.vitals.maxSt).setLabel("ST").setColor(COLOR_YELLOW).showValue().format()
-  log(result, output)
+  log(getVitals().join('\n'), output)
 }
 
 function experienceCommand(args, output) {
-  let role = user.roles[user.currentRole]
-  let result = ""
-  result += `Level ${role.level} ${user.currentRole}` + "\n"
-  result += new ProgressBar(role.xp, xpForRoleLevel(role.level + 1)).setLabel("XP").setColor(COLOR_MAGENTA).showValue().format()
-  log(result, output)
+  log(getRoleAndXp().join('\n'), output)
 }
 
 function inventoryCommand(args, output) {
