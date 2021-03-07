@@ -28,6 +28,8 @@ document.addEventListener("unload", () => {
 event("load", () => {
   setTimeout( () => {
     loadGame()
+    initRoles()
+    initCommands()
     initTerminal()
     configureIntervals()
     console.log("Loaded")
