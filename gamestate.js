@@ -8,7 +8,9 @@ function newUser() {
       current: getStartingStatBlock(),
     },
     inventory: {},
-    roles: STARTING_ROLES_BLOCK,
+    roles: {
+      STARTING_ROLE: {level: 1, xp; 0},
+    },
     time: {
       lastUpdate: Date.now(),
     },
