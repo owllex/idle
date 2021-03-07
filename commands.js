@@ -209,11 +209,10 @@ function changeCommand(output, args) {
     return
   }
   const role = args[2]
-  if (!(role in ALL_ROLES) || !(role in user.roles)) {
+  if (!changeRole(role)) {
     log(output, "That's not a valid role.")
     return
   }
-  user.currentRole = role
   log(output, `You've switched roles to ${role} (Level ${user.currentRole.level}).`)
 }
 
