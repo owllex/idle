@@ -149,7 +149,7 @@ function buildRoleOutput(role, data) {
 function rolesCommand(args, output) {
   let lines = []
   const validRoles = []
-  for (const role of ALL_ROLES) {
+  for (const [role, data] of Object.entries(ALL_ROLES)) {
     if (user.roles[role]) {
       validRoles.push(role)
     }
