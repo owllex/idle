@@ -211,7 +211,7 @@ function changeCommand(output, args) {
   const roleQuery = args.slice(2).join(" ")
   let possibleRoles = findRoleByName(roleQuery)
   if (possibleRoles.length == 0) {
-    log(output, `There were no roles matching ${roleQuery}.`)
+    log(output, `There were no roles matching that name.`)
     return
   }
   if (possibleRoles.length > 1) {
