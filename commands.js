@@ -203,7 +203,22 @@ function reloadCommand(output, args) {
   location.reload()
 }
 
+function changeCommand(output, args) {
+  if (args[1] != "role" || !args[2]) {
+    log(output, "Format is: change role <role-name>")
+    return
+  }
+  const role = args[2]
+  if (!(role in ALL_ROLES) || !(role in user.roles)) {
+    log(output, "That's not a valid role.")
+    return
+  }
+  user.currentRole = role
+  log(output, `You've switched roles to ${role} (Level ${user.currentRole.level}).`)
+}
+
 const BASE_COMMANDS = {
+  "change": changeCommand,
   "clear": clearCommand,
   "experience": experienceCommand,
   "health": vitalsCommand,
