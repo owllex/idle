@@ -8,3 +8,9 @@ const ALL_LOCATIONS = {
   "home": {short: "Home", long: "Home"},
   "mistwood": {short: "Mistwood", long: "The Mistwood"},
 }
+
+const ALL_ACTIVITIES = {
+  "nothing": {},
+  "exploring": {},
+  "woodcutting": {},
+}
