@@ -35,7 +35,7 @@ function getBonusBlockForRole(role, level) {
 // Returns a list of all roles fuzzy-matching the given query.
 function findRoleByName(query) {
   let possibleRoles = []
-  for (const role of ALL_ROLES) {
+  for (const role in Object.keys(ALL_ROLES)) {
     if (role.toLowerCase().startsWith(newRole)) {
       possibleRoles.push(role)
     }
