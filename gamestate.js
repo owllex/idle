@@ -26,6 +26,7 @@ updateStats()
 recoverVitals()
 
 function saveGame(notify) {
+  user.time.lastUpdate = Date.now()
   localStorage.setItem("user", JSON.stringify(user))
   if (notify) {
     successMessage("Game Saved")
