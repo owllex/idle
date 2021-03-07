@@ -32,11 +32,19 @@ function getBonusBlockForRole(role, level) {
   }
 }
 
+// Returns a list of all roles fuzzy-matching the given query.
+function findRoleByName(query) {
+  let possibleRoles = []
+  for (const role of ALL_ROLES) {
+    if (role.toLowerCase().startsWith(newRole)) {
+      possibleRoles.push(role)
+    }
+  }
+  return possibleRoles
+}
+
 // Changes the user's role. Return true on success.
 function changeRole(newRole) {
-  // Find the requested role in the roles list. Allow fuzzy matching since a user typed it.
-  for (const role of ALL_ROLES) {
-  }
   if (!(newRole in ALL_ROLES) || !(newRole in user.roles)) {
     return false
   }
@@ -46,6 +54,7 @@ function changeRole(newRole) {
 }
   
 function buildRolePrefixTable() {
+  
 }
 
 function initRoles() {
