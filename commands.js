@@ -205,7 +205,7 @@ function reloadCommand(output, args) {
 
 function changeCommand(output, args) {
   if (args[1] != "role" || !args[2]) {
-    log(output, "Format is: change role <role-name>")
+    log(output, "Format is: change role [role-name]")
     return
   }
   const roleQuery = args.slice(2).join(" ")
