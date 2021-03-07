@@ -17,7 +17,7 @@ function enterText(input, output) {
   if (!text) {
     return;
   }
-  logInput(text, output)
+  logInput(output, text)
   pushCommand(text)
   
   const words = text.split(' ')
@@ -58,7 +58,7 @@ function initTerminal() {
   input = document.getElementById("input");
   output = document.getElementById("output");
   
-  log("Welcome!", output)
+  log(output, "Welcome!")
   
   input.addEventListener("keydown", function (event) {
     handleKeyEvent(event, input, output);
