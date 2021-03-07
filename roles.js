@@ -8,10 +8,6 @@ const ALL_ROLES = {
 
 const STARTING_ROLE = "Wanderer"
 
-const STARTING_ROLES_BLOCK = {
-  "Wanderer": {level: 1, xp: 0},
-}
-
 function xpForRoleLevel(level) {
   return 68 + Math.pow(level, 5)
 }
