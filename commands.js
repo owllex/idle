@@ -263,6 +263,10 @@ function buildCommandTable() {
   }        
 }
 
+function initCommand() {
+  buildCommandTable()
+}
+
 // Requires buildCommandTable() to be called first.
 function runCommand(output, words) {
   const command = words[0]
