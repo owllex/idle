@@ -1,43 +1,20 @@
-function logWithClass(text, className, output) {
-  let textNode = document.createTextNode(text)
-  let preNode = document.createElement("PRE")
-  preNode.classList.add(className)
-  preNode.appendChild(textNode)
-  output.appendChild(preNode)
-}
-
-function logHtml(html, className, output) {
-  let preNode = document.createElement("PRE")
-  preNode.innerHTML = html
-  preNode.classList.add(className)
-  output.appendChild(preNode)
-}
-
-function log(html, output) {
-  logHtml(html, "output-content", output)
-}
-
-function logInput(text, output) {
-  logWithClass("> " + text, "input-content", output)
-}
-
-function saveCommand(args, output) {
+function saveCommand(output, args) {
   saveGame()
-  log("Game Saved!", output)
+  log(output, "Game Saved!")
 }
 
-function invalidCommand(args, output) {
-  log("No such command.", output)
+function invalidCommand(output, args) {
+  log(output, "No such command.")
 }
 
-function helpCommand(args, output) {
+function helpCommand(output, args) {
   let result = 'Try one of the following:\n' + Object.keys(BASE_COMMANDS).join(', ')
-  log(result, output)
+  log(output, result)
 }
 
-function ambiguousCommand(commandList, output) {
+function ambiguousCommand(output, commandList) {
   let result = "Which of the following did you mean? " + commandList.join(', ')
-  log(result, output)
+  log(output, result)
 }
 
 function getVitals() {
@@ -58,7 +35,7 @@ function getRoleAndXp() {
 
 const STATS_PADDING = 4
 
-function statsCommand(args, output) {
+function statsCommand(output, args) {
   let role = user.roles[user.currentRole]
   const stats = user.stats.current
   let str = wrapWithColor(`${stats.str}`.padStart(STATS_PADDING), COLOR_GRAY)
@@ -76,20 +53,20 @@ function statsCommand(args, output) {
   
   lines = lines.concat(getVitals())
   
-  log(lines.join('\n'), output)
+  log(output, lines.join('\n'))
 }
 
-function vitalsCommand(args, output) {
-  log(getVitals().join('\n'), output)
+function vitalsCommand(output, args) {
+  log(output, getVitals().join('\n'))
 }
 
-function experienceCommand(args, output) {
-  log(getRoleAndXp().join('\n'), output)
+function experienceCommand(output, args) {
+  log(output, getRoleAndXp().join('\n'))
 }
 
-function inventoryCommand(args, output) {
+function inventoryCommand(output, args) {
   if (!user.inventory.length) {
-    log("Nothing in your inventory.", output)
+    log(output, "Nothing in your inventory.")
     return
   }
   let result = "Inventory:\n"
@@ -100,19 +77,19 @@ function inventoryCommand(args, output) {
       result += `  ${item}` + '\n'
     }
   }
-  log(result, output)
+  log(output, result)
 }
 
-function resetGameCommand(args, output) {
+function resetGameCommand(output, args) {
   if (args && args[0] == "resetgame" && args[1] == "!") {
     resetGame()
-    log("Game Reset!", output)
+    log(output, "Game Reset!")
     return
   }
   let result = wrapWithColor(
     'Are you sure you want to completely reset the game? This cannot be undone!\n' +
     '  If so, type "resetgame !"', COLOR_RED)
-  log(result, output)
+  log(output, result)
 }
 
 function bonusBlockToString(block) {
@@ -146,7 +123,7 @@ function buildRoleOutput(role, data) {
   return lines
 }
 
-function rolesCommand(args, output) {
+function rolesCommand(output, args) {
   let lines = []
   const validRoles = []
   for (const [role, data] of Object.entries(ALL_ROLES)) {
@@ -214,14 +191,14 @@ function rolesCommand(args, output) {
       }
     }  
   }
-  log(lines.join('\n'), output)
+  log(output, lines.join('\n'))
 }
 
-function clearCommand(args, output) {
+function clearCommand(output, args) {
   output.innerHTML = ""
 }
 
-function reloadCommand(args, output) {
+function reloadCommand(output, args) {
   saveGame()
   location.reload()
 }
@@ -265,13 +242,19 @@ function buildCommandTable() {
     if (commandList.length == 1) {
       commandTable[command] = BASE_COMMANDS[commandList[0]]
     } else {
-      commandTable[command] = (function(args, output) {
-        ambiguousCommand(commandList, output)
+      commandTable[command] = (function(output, args) {
+        ambiguousCommand(output, commandList)
       });
     }
   }        
 }
 
-function getCommandTable() {
-  return commandTable
+// Requires buildCommandTable() to be called first.
+function runCommand() {
+  const command = words[0]
+  if (!(command in commandTable)) {
+    invalidCommand(output)
+  } else {
+    commandTable[command](output, words)
+  }
 }
