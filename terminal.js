@@ -34,6 +34,7 @@ function handleKeyEvent(event, input, output) {
   } else if (event.key === 'Enter') {
     event.preventDefault();
     enterText(input, output);
+    commandIndex = -1
   } else if (event.key === 'ArrowUp') {
     event.preventDefault();
     if (commandIndex + 1 < commandStack.length) {
