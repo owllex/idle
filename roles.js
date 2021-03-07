@@ -48,7 +48,7 @@ function changeRole(newRole) {
   if (!(newRole in ALL_ROLES) || !(newRole in user.roles)) {
     return false
   }
-  user.currentRole = role
+  user.currentRole = newRole
   updateStats()
   return true
 }
