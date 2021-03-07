@@ -53,8 +53,6 @@ function handleKeyEvent(event, input, output) {
 }
 
 function initTerminal() {
-  buildCommandTable()
-  
   input = document.getElementById("input");
   output = document.getElementById("output");
   
