@@ -50,7 +50,7 @@ function logWithClass(output, text, className) {
   output.appendChild(preNode)
 }
 
-function logHtml(html, className, output) {
+function logHtml(output, html, className) {
   let preNode = document.createElement("PRE")
   preNode.innerHTML = html
   preNode.classList.add(className)
@@ -58,9 +58,9 @@ function logHtml(html, className, output) {
 }
 
 function log(output, html) {
-  logHtml(html, "output-content", output)
+  logHtml(output, html, "output-content")
 }
 
 function logInput(output, text) {
-  logWithClass("> " + text, "input-content", output)
+  logWithClass(output, "> " + text, "input-content")
 }
