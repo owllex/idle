@@ -265,7 +265,7 @@ function buildCommandTable() {
 }
 
 // Requires buildCommandTable() to be called first.
-function runCommand() {
+function runCommand(output, words) {
   const command = words[0]
   if (!(command in commandTable)) {
     invalidCommand(output)
