@@ -6,6 +6,8 @@ const ALL_ROLES = {
   "Acolyte": {},
 }
 
+let rolePrefixTable = {}
+
 const STARTING_ROLE = "Wanderer"
 
 function xpForRoleLevel(level) {
@@ -32,10 +34,20 @@ function getBonusBlockForRole(role, level) {
 
 // Changes the user's role. Return true on success.
 function changeRole(newRole) {
+  // Find the requested role in the roles list. Allow fuzzy matching since a user typed it.
+  for (const role of ALL_ROLES) {
+  }
   if (!(newRole in ALL_ROLES) || !(newRole in user.roles)) {
     return false
   }
   user.currentRole = role
   updateStats()
   return true
+}
+  
+function buildRolePrefixTable() {
+}
+
+function initRoles() {
+  buildRolePrefixTable()
 }
