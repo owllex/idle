@@ -213,7 +213,7 @@ function changeCommand(output, args) {
     log(output, "That's not a valid role.")
     return
   }
-  log(output, `You've switched roles to ${role} (Level ${user.currentRole.level}).`)
+  log(output, `You've switched roles to ${role} (Level ${user.roles[user.currentRole].level}).`)
 }
 
 const BASE_COMMANDS = {
