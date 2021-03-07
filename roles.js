@@ -1,10 +1,10 @@
-const ALL_ROLES = [
-  "Wanderer",
-  "Fighter",
-  "Rogue",
-  "Apprentice",
-  "Acolyte",
-]
+const ALL_ROLES = {
+  "Wanderer": {},
+  "Fighter": {},
+  "Rogue": {},
+  "Apprentice": {},
+  "Acolyte": {},
+}
 
 const STARTING_ROLE = "Wanderer"
 
