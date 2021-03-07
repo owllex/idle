@@ -24,13 +24,7 @@ function enterText(input, output) {
   if (words.length == 0) {
     return
   }
-  const commandTable = getCommandTable()
-  const command = words[0]
-  if (!(command in commandTable)) {
-    invalidCommand(null, output)
-  } else {
-    commandTable[command](words, output)
-  }
+  runCommand(output, words)
   input.scrollIntoViewIfNeeded()
 }
 
