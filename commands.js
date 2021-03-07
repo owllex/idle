@@ -218,12 +218,12 @@ function changeCommand(output, args) {
     log(output, `There were multiple matching roles. Which did you mean?: ${possibleRoles.join(', ')}`)
     return
   }
-  if (!changeRole(role)) {
+  if (!changeRole(possibleRoles[0])) {
     log(output, 'Something went wrong.')
     return
   }
 
-  log(output, `You've switched roles to ${role} (Level ${user.roles[user.currentRole].level}).`)
+  log(output, `You've switched roles to ${user.currentRole} (Level ${user.roles[user.currentRole].level}).`)
 }
 
 const BASE_COMMANDS = {
