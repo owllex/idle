@@ -263,7 +263,7 @@ function buildCommandTable() {
   }        
 }
 
-function initCommand() {
+function initCommands() {
   buildCommandTable()
 }
 
