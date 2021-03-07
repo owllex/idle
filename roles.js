@@ -29,3 +29,13 @@ function getBonusBlockForRole(role, level) {
       return {active: {}, global: {}}
   }
 }
+
+// Changes the user's role. Return true on success.
+function changeRole(newRole) {
+  if (!(newRole in ALL_ROLES) || !(newRole in user.roles)) {
+    return false
+  }
+  user.currentRole = role
+  updateStats()
+  return true
+}
