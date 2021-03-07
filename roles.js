@@ -6,6 +6,8 @@ const ALL_ROLES = [
   "Acolyte",
 ]
 
+const STARTING_ROLE = "Wanderer"
+
 function xpForRoleLevel(level) {
   return 68 + Math.pow(level, 5)
 }
