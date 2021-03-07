@@ -1,22 +1,18 @@
 function newUser() {
   return {
     version: "0.0.1",
-    currentRole: "Commoner",
+    currentRole: STARTING_ROLE,
     vitals: getStartingVitals(),
     stats: {
       base: getStartingStatBlock(),
       current: getStartingStatBlock(),
     },
-    inventory: {
-    },
-    roles: {
-      "Commoner": {
-        level: 1,
-        xp: 0,
-      },
-    },
+    inventory: {},
+    roles: STARTING_ROLES_BLOCK,
     time: {
       lastUpdate: Date.now(),
+    },
+    activity: {
     },
     options: {
     },
