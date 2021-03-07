@@ -36,7 +36,7 @@ function getBonusBlockForRole(role, level) {
 function findRoleByName(query) {
   let possibleRoles = []
   for (const role in Object.keys(ALL_ROLES)) {
-    if (role.toLowerCase().startsWith(newRole)) {
+    if (role.toLowerCase().startsWith(query)) {
       possibleRoles.push(role)
     }
   }
