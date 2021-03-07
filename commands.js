@@ -208,11 +208,21 @@ function changeCommand(output, args) {
     log(output, "Format is: change role <role-name>")
     return
   }
-  const role = args[2]
-  if (!changeRole(role)) {
-    log(output, "That's not a valid role.")
+  const roleQuery = args.slice(2).join(" ")
+  let possibleRoles = findRoleByName(roleQuery)
+  if (possibleRoles.length == 0) {
+    log(output, `There were no roles matching ${roleQuery}.`)
     return
   }
+  if (possibleRoles.length > 1) {
+    log(output, `There were multiple matching roles. Which did you mean?: ${possibleRoles.join(', ')}`)
+    return
+  }
+  if (!changeRole(role)) {
+    log(output, 'Something went wrong.')
+    return
+  }
+
   log(output, `You've switched roles to ${role} (Level ${user.roles[user.currentRole].level}).`)
 }
 
