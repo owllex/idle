@@ -1,5 +1,5 @@
 const ALL_ROLES = [
-  "Commoner",
+  "Wanderer",
   "Fighter",
   "Rogue",
   "Apprentice",
@@ -12,7 +12,7 @@ function xpForRoleLevel(level) {
 
 function getBonusBlockForRole(role, level) {
   switch (role) {
-    case "Commoner":
+    case "Wanderer":
       return {active: {maxHp: level - 1}, global: {maxHp: level - 1}}
     case "Fighter":
       return {active: {str: level - 1}, global: {str: level - 1}}
