@@ -15,6 +15,8 @@ function newUser() {
       lastUpdate: Date.now(),
     },
     activity: {
+      action: "nothing",
+      location: "town",
     },
     options: {
     },
