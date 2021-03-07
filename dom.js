@@ -41,3 +41,26 @@ function fillUiElements(className, value) {
     elements[i].innerText = value
   }
 }
+
+function logWithClass(output, text, className) {
+  let textNode = document.createTextNode(text)
+  let preNode = document.createElement("PRE")
+  preNode.classList.add(className)
+  preNode.appendChild(textNode)
+  output.appendChild(preNode)
+}
+
+function logHtml(html, className, output) {
+  let preNode = document.createElement("PRE")
+  preNode.innerHTML = html
+  preNode.classList.add(className)
+  output.appendChild(preNode)
+}
+
+function log(output, html) {
+  logHtml(html, "output-content", output)
+}
+
+function logInput(output, text) {
+  logWithClass("> " + text, "input-content", output)
+}
