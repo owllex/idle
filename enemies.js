@@ -32,7 +32,7 @@ function applyTag(tag, block) {
       block["attackMin"] += tagData.add
       block["attackMax"] += tagData.add
     }
-    if (tagData.multi {
+    if (tagData.multi) {
       block["attackMin"] *= tagData.multi
       block["attackMax"] *= tagData.multi
     }
