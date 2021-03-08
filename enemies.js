@@ -46,7 +46,7 @@ function applyTag(tag, block) {
   }  
 }
 
-function buildStatBlockForEnemy(enemyId) {
+function buildEnemyStatBlock(enemyId) {
   let enemy = ALL_ENEMIES[enemyId]
   if (!enemy) {
     console.log(`No enemy '${enemyId}'`)
