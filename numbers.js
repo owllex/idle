@@ -34,3 +34,8 @@ function formatNumber(num) {
   var e = Math.max(Math.min(3 * Math.floor(getExponent(n) / 3), 24), -24);
   return adjustPrecision(n / Math.pow(10, e)).toString() + PREFIXES[e];
 }
+
+// Returns a random number between low and high, inclusive.
+function random(low, high) {
+  Math.floor((Math.random() * high) + low);
+}
