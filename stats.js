@@ -1,26 +1,40 @@
+// Everything in this list can be automatically combined.
 const ALL_STATS = {
   // Strength: brute damage, physical skill prowess, HP (secondary)
   "str": {abbrev: "STR", name: "Strength"},
+  
   // Vitality: HP (primary), SP (co-primary), resistance to physical effects
   "vit": {abbrev: "VIT", name: "Vitality"}, 
+  
   // Dexterity: finesse damage, fine skill prowess
   "dex": {abbrev: "DEX", name: "Dexterity"},
-  // Agility: Initiative, speed, evasion, SP (co-primary)
+  
+  // Agility: Speed, evasion, SP (co-primary)
   "agi": {abbrev: "AGI", name: "Agility"},
+  
   // Intelligence: arcane magic damage, MP (secondary)
   "int": {abbrev: "INT", name: "Intellect"},
+  
   // Wisdom: nature magic damage, resistance to magical effects, MP (secondary)
   "wis": {abbrev: "WIS", name: "Wisdom"},
+  
   // Magic: MP (primary), overall magic damage
   "mag": {abbrev: "MAG", name: "Magic"},
+  
   // Charisma: interaction prowess, light/dark magic damage 
   "cha": {abbrev: "CHA", name: "Charisma"},
+  
   // Max hit points
   "maxHp": {abbrev: "HP", name: "Hit Points"},
+  
   // Max magic points 
   "maxMp": {abbrev: "MP", name: "Mana Points"},
+  
   // Max stamina 
   "maxSt": {abbrev: "ST", name: "Stamina"},
+  
+  // Speed (derived)
+  "speed": {abbrev: "SPD", name: "Speed"},
 }
 
 function getStartingVitals() {
@@ -68,11 +82,17 @@ function recoverVitals() {
   user.vitals.st = user.vitals.maxSt
 }
 
-function calculateDerivedStats(stats) {
+function calculateVitals(stats) {
   return {
     maxHp: Math.floor(stats.maxHp + stats.vit * 2 + stats.str),
     maxMp: Math.floor(stats.maxMp + stats.mag * 2 + stats.int + stats.wis),
     maxSt: Math.floor(stats.maxSt + stats.vit + stats.agi),
+  }
+}
+
+function calculateDerivedStats(stats) {
+  return {
+    speed: Math.floor(stats.agi)
   }
 }
 
@@ -89,16 +109,17 @@ function updateStats() {
     newStats = addStatBlocks(newStats, block.global)
   }
   let derivedStats = calculateDerivedStats(newStats)
-
+  newStats = addStatBlock(newStats, derivedStats)
   user.stats.current = newStats
+
+  let derivedVitals = calculateVitals(newStats)
+  let hpDiff = derivedVitals.maxHp - user.vitals.maxHp
+  let mpDiff = derivedVitals.maxMp - user.vitals.maxMp
+  let stDiff = derivedVitals.maxSt - user.vitals.maxSt
   
-  let hpDiff = derivedStats.maxHp - user.vitals.maxHp
-  let mpDiff = derivedStats.maxMp - user.vitals.maxMp
-  let stDiff = derivedStats.maxSt - user.vitals.maxSt
-  
-  user.vitals.maxHp = derivedStats.maxHp
-  user.vitals.maxMp = derivedStats.maxMp
-  user.vitals.maxSt = derivedStats.maxSt
+  user.vitals.maxHp = derivedVitals.maxHp
+  user.vitals.maxMp = derivedVitals.maxMp
+  user.vitals.maxSt = derivedVitals.maxSt
   
   user.vitals.hp += hpDiff > 0 ? hpDiff : 0
   user.vitals.mp += mpDiff > 0 ? mpDiff : 0
