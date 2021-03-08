@@ -1,4 +1,12 @@
 const INITIATIVE_MULTIPLIER = 10
+const BATTLE_UPDATE_RATE = 1
+
+let battleTimer = null
+
+function stopBattleTimer() {
+  clearInterval(battleTimer)
+  battleTimer = null
+}
 
 // Attack outcomes:
 // Dodge / Resist
@@ -12,10 +20,12 @@ const INITIATIVE_MULTIPLIER = 10
 // Armor applies damage reduction if a hit occurs.
 
 
-function heroTurn() {
+function heroTurn(output) {
+  log(output, "Hero Turn!")
 }
 
-function enemyTurn(enemyId) {
+function enemyTurn(enemyId, output) {
+  log(output, `${enemyId} Turn!`)
 }
 
 // Executes the next turn of the battle.
@@ -52,9 +62,39 @@ function nextTurn() {
   }
 }
 
-function startBattle(enemyId) {
-  if (user.battle.active) {
+function tickBattle(output) {
+  if (!user.battle.active) {
+    stopBattleTimer()
+    return
+  }
+  user.battle.heroInit += user.stats.current.speed
+  if (user.battle.heroInit >= user.battle.maxInit) {
+    user.battle.heroInit -= user.battle.maxInit
+    heroTurn()
+  }
+  for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
+    data.init += data.stats.speed
+    if (data.init > user.battle.maxInit) {
+      data.init -= user.battle.maxInit
+      enemyTurn(enemyId)
+    }
+  }  
+}
+
+function startBattleTimer() {
+  battleTimer = setInterval(() => {
+    tickBattle()
+  }, 1000 / BATTLE_UPDATE_RATE)
+}
+
+function startBattle(enemyId, output) {
+  if (battleTimer) {
     console.log("Battle already in progress!")
+    return
+  } else if (user.battle.active) {
+    // Battle in progress, but no timer is running.
+    console.log("Restarting battle timer.")
+    startBattleTimer()
     return
   }
   // Note: enemy IDs only permit one enemy of a type right now. Will need to change
@@ -75,4 +115,11 @@ function startBattle(enemyId) {
   }
   user.battle.maxInit = INITIATIVE_MULTIPLIER * Math.max(bestEnemySpeed, user.stats.current.speed)
   user.battle.heroInit = random(0, INITIATIVE_MULTIPLIER * user.stats.current.speed)
+  
+  startBattleTimer()
 }
+
+function endBattle() {
+  stopBattleTimer()
+}
+
