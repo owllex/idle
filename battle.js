@@ -58,7 +58,7 @@ function nextTurn(output) {
     heroTurn(output)
   } else {
     user.battle.enemies[next] -= user.battle.maxInit
-    enemyTurn(output, next)
+    enemyTurn(next, output)
   }
 }
 
@@ -76,7 +76,7 @@ function tickBattle(output) {
     data.init += data.stats.speed
     if (data.init > user.battle.maxInit) {
       data.init -= user.battle.maxInit
-      enemyTurn(output, enemyId)
+      enemyTurn(enemyId, output)
     }
   }  
 }
