@@ -46,10 +46,10 @@ function applyTag(tag, block) {
   }  
 }
 
-function buildStatBlockForEnemy(enemy) {
-  let enemy = ALL_ENEMIES[enemy]
+function buildStatBlockForEnemy(enemyId) {
+  let enemy = ALL_ENEMIES[enemyId]
   if (!enemy) {
-    console.log(`No enemy '${enemy}'`)
+    console.log(`No enemy '${enemyId}'`)
     enemy = ALL_ENEMIES[DEFAULT_ENEMY]
   }
   const statMultiplier = Math.pow(enemy.challenge, CHALLENGE_SCALING)
