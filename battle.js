@@ -11,10 +11,14 @@ const INITIATIVE_MULTIPLIER = 10
 // Calculate rating for each outcome and "stack" them.
 // Armor applies damage reduction if a hit occurs.
 
-function attack(attacker, defender) {
+
+function heroTurn() {
 }
 
-// Returns the iD
+function enemyTurn(enemyId) {
+}
+
+// Executes the next turn of the battle.
 function nextTurn() {
   // Figure out who is going next.
   let bestSteps = (user.battle.maxInit - user.battle.heroInit) / user.stats.current.speed
@@ -41,10 +45,10 @@ function nextTurn() {
   console.log(`${next} turn`)
   if (next == "hero") {
     user.battle.heroInit -= user.battle.maxInit
-    // Hero turn.
+    heroTurn()
   } else {
     user.battle.enemies[next] -= user.battle.maxInit
-    // Enemy turn.
+    enemyTurn(next)
   }
 }
 
