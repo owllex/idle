@@ -17,6 +17,7 @@ function newUser() {
     activity: {
       action: "nothing",
       location: "town",
+      battle: {},
     },
     options: {
     },
