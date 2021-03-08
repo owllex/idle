@@ -33,8 +33,13 @@ const ALL_STATS = {
   // Max stamina 
   "maxSt": {abbrev: "ST", name: "Stamina"},
   
-  // Speed (derived)
+  // Derived stats
   "speed": {abbrev: "SPD", name: "Speed"},
+  "attack": {abbrev: "ATK", name: "Attack Raing"},
+  "dodge": {abbrev: "EVA", name: "Evasion"},
+  "parry": {abbrev: "PAR", name: "Parry"},
+  "block": {abbrev: "BLK", name: "Block"},
+  "armor": {abbrev: "ARM", name: "Armor"},
 }
 
 function getStartingVitals() {
@@ -92,7 +97,12 @@ function calculateVitals(stats) {
 
 function calculateDerivedStats(stats) {
   return {
-    speed: Math.floor(stats.agi)
+    speed: Math.floor(stats.agi),
+    attack: 0,
+    dodge: 0,
+    parry: 0,
+    block: 0,
+    armor: 0,
   }
 }
 
