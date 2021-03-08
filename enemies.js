@@ -54,10 +54,10 @@ function buildEnemyStatBlock(enemyId) {
   }
   const statMultiplier = Math.pow(enemy.challenge, CHALLENGE_SCALING)
   let block = {
-    attack: BASE_ATTACK_VALUE * statMultiplier,
-    speed: BASE_SPEED_VALUE * statMultiplier,
-    maxHp: BASE_MAXHP_VALUE * statMultiplier,
-    dodge: BASE_DODGE_VALUE * statMultiplier,
+    attack: Math.ceil(BASE_ATTACK_VALUE * statMultiplier),
+    speed: Math.ceil(BASE_SPEED_VALUE * statMultiplier),
+    maxHp: Math.ceil(BASE_MAXHP_VALUE * statMultiplier),
+    dodge: Math.ceil(BASE_DODGE_VALUE * statMultiplier),
     parry: 0,
     block: 0,
     armor: 0,
