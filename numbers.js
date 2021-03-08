@@ -37,5 +37,5 @@ function formatNumber(num) {
 
 // Returns a random number between low and high, inclusive.
 function random(low, high) {
-  Math.floor((Math.random() * high) + low);
+  return Math.floor((Math.random() * high) + low);
 }
