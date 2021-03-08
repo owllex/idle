@@ -43,6 +43,7 @@ function nextTurn() {
     user.battle.heroInit -= user.battle.maxInit
     // Hero turn.
   } else {
+    user.battle.enemies[next] -= user.battle.maxInit
     // Enemy turn.
   }
 }
