@@ -81,9 +81,9 @@ function tickBattle(output) {
   }  
 }
 
-function startBattleTimer() {
+function startBattleTimer(output) {
   battleTimer = setInterval(() => {
-    tickBattle()
+    tickBattle(output)
   }, 1000 / BATTLE_UPDATE_RATE)
 }
 
@@ -94,7 +94,7 @@ function startBattle(enemyId, output) {
   } else if (user.battle.active) {
     // Battle in progress, but no timer is running.
     console.log("Restarting battle timer.")
-    startBattleTimer()
+    startBattleTimer(output)
     return
   }
   // Note: enemy IDs only permit one enemy of a type right now. Will need to change
@@ -116,7 +116,7 @@ function startBattle(enemyId, output) {
   user.battle.maxInit = INITIATIVE_MULTIPLIER * Math.max(bestEnemySpeed, user.stats.current.speed)
   user.battle.heroInit = random(0, INITIATIVE_MULTIPLIER * user.stats.current.speed)
   
-  startBattleTimer()
+  startBattleTimer(output)
 }
 
 function endBattle() {
