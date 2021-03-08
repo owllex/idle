@@ -10,7 +10,7 @@ const ALL_ENEMY_TAGS = {
 
 const ALL_ENEMIES = {
   "giantRat": {name: "Giant Rat", challenge: 1, tags: ["fast"], attackType: "brute"},
-  "kobold": {name: "Kobold", challenge: 2, tags: ["sneaky", "lightarmor"], attackType: "brute"},
+  "kobold": {name: "Kobold", challenge: 2, tags: ["fast", "sneaky", "lightarmor"], attackType: "brute"},
 }
 
 const DEFAULT_ENEMY = "kobold"
@@ -18,7 +18,7 @@ const DEFAULT_ENEMY = "kobold"
 const BASE_ATTACK_VALUE = 2
 const ATTACK_VARIANCE = 1.5 // Must be > 1.0
 const CHALLENGE_SCALING = 1.5
-const BASE_SPEED_VALUE = 3
+const BASE_SPEED_VALUE = 10
 const BASE_MAXHP_VALUE = 10
 const BASE_DODGE_VALUE = 5
 
