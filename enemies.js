@@ -9,8 +9,8 @@ const ALL_ENEMY_TAGS = {
 }
 
 const ALL_ENEMIES = {
-  "giantRat": {name: "Giant Rat", challenge: 1, attackType: "brute", tags: ["fast"]},
-  "kobold": {name: "Kobold", challenge: 1, attackType: "brute", tags: ["sneaky", "lightarmor"]},
+  "giantRat": {name: "Giant Rat", challenge: 1, tags: ["fast"], attackType: "brute"},
+  "kobold": {name: "Kobold", challenge: 2, tags: ["sneaky", "lightarmor"], attackType: "brute"},
 }
 
 const DEFAULT_ENEMY = "kobold"
