@@ -38,7 +38,7 @@ function nextTurn() {
     }
   }
   
-  console.log(`${next} turn`
+  console.log(`${next} turn`)
   if (next == "hero") {
     user.battle.heroInit -= user.battle.maxInit
     // Hero turn.
