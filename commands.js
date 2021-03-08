@@ -118,8 +118,8 @@ function buildRoleOutput(role, data) {
   } else {
     lines.push(smartPadEnd(`${role}, Level ${data.level}`, ROLE_BOX_LENGTH, ' '))
   }
-  lines.push(smartPadEnd(`  Active bonus: ${bonusBlockToString(bonusBlock.active)}`, ROLE_BOX_LENGTH, ' '))
-  lines.push(smartPadEnd(`  Global bonus: ${bonusBlockToString(bonusBlock.global)}`, ROLE_BOX_LENGTH, ' '))
+  lines.push(smartPadEnd(`  Active bonus:  ${bonusBlockToString(bonusBlock.active)}`, ROLE_BOX_LENGTH, ' '))
+  lines.push(smartPadEnd(`  Passive bonus: ${bonusBlockToString(bonusBlock.global)}`, ROLE_BOX_LENGTH, ' '))
   return lines
 }
 
