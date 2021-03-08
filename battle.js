@@ -29,7 +29,7 @@ function enemyTurn(enemyId, output) {
 }
 
 // Executes the next turn of the battle.
-function nextTurn() {
+function nextTurn(output) {
   // Figure out who is going next.
   let bestSteps = (user.battle.maxInit - user.battle.heroInit) / user.stats.current.speed
   let next = "hero"
@@ -55,10 +55,10 @@ function nextTurn() {
   console.log(`${next} turn`)
   if (next == "hero") {
     user.battle.heroInit -= user.battle.maxInit
-    heroTurn()
+    heroTurn(output)
   } else {
     user.battle.enemies[next] -= user.battle.maxInit
-    enemyTurn(next)
+    enemyTurn(output, next)
   }
 }
 
@@ -70,13 +70,13 @@ function tickBattle(output) {
   user.battle.heroInit += user.stats.current.speed
   if (user.battle.heroInit >= user.battle.maxInit) {
     user.battle.heroInit -= user.battle.maxInit
-    heroTurn()
+    heroTurn(output)
   }
   for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
     data.init += data.stats.speed
     if (data.init > user.battle.maxInit) {
       data.init -= user.battle.maxInit
-      enemyTurn(enemyId)
+      enemyTurn(output, enemyId)
     }
   }  
 }
