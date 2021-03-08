@@ -120,6 +120,7 @@ function startBattle(enemyId, output) {
 }
 
 function endBattle() {
+  user.battle.active = false
   stopBattleTimer()
 }
 
