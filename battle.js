@@ -59,7 +59,7 @@ function startBattle(enemyId) {
     heroInit: 0,
     maxInit: 0,
     enemies: {
-      enemyId: {stats: buildEnemyStatBlock(enemyId), init: 0},
+      [enemyId]: {stats: buildEnemyStatBlock(enemyId), init: 0},
     },
   }
   let bestEnemySpeed = 0;
