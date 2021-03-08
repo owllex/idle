@@ -119,7 +119,7 @@ function updateStats() {
     newStats = addStatBlocks(newStats, block.global)
   }
   let derivedStats = calculateDerivedStats(newStats)
-  newStats = addStatBlock(newStats, derivedStats)
+  newStats = addStatBlocks(newStats, derivedStats)
   user.stats.current = newStats
 
   let derivedVitals = calculateVitals(newStats)
