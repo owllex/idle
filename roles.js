@@ -20,15 +20,15 @@ function getBonusBlockForRole(role, level) {
     case "Wanderer":
       return {active: {maxHp: level - 1}, global: {maxHp: level - 1}}
     case "Fighter":
-      return {active: {str: level - 1, vit: level / 2}, global: {str: level - 1}}
+      return {active: {str: level - 1, vit: Math.floor(level / 2)}, global: {str: level - 1}}
     case "Ranger":
-      return {active: {dex: level - 1, wis: level / 2}, global: {dex: level - 1}}
+      return {active: {dex: level - 1, wis: Math.floor(level / 2)}, global: {dex: level - 1}}
     case "Apprentice":
-      return {active: {int: level - 1, mag: level / 2}, global: {int: level - 1}}
+      return {active: {int: level - 1, mag: Math.floor(level / 2)}, global: {int: level - 1}}
     case "Rogue":
-      return {active: {dex: level - 1, agi: level / 2}, global: {dex: level - 1}}
+      return {active: {dex: level - 1, agi: Math.floor(level / 2)}, global: {dex: level - 1}}
     case "Acolyte":
-      return {active: {wis: level - 1, mag: level / 2}, global: {wis: level - 1}}
+      return {active: {wis: level - 1, mag: Math.floor(level / 2)}, global: {wis: level - 1}}
     default:
       console.log("No role " + role);
       return {active: {}, global: {}}
