@@ -22,12 +22,11 @@ function attackVerb(subject, verb) {
   return conjugate(subject, ALL_ATTACK_VERBS['default'])
 }
 
-function num(number) {
+function num(number, colorCode) {
+  if (colorCode) {
+    return color(Math.ceil(number.toString()), colorCode)
+  }
   return Math.ceil(number.toString())
-}
-
-function num(number, color) {
-  return color(Math.ceil(number.toString()), color)
 }
 
 function you(name, capitalizeName) {
