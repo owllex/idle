@@ -4,6 +4,7 @@ const ALL_ENEMY_TAGS = {
   "fast": {stat: "speed", multi: 1.5},
   "strong": {stat: "attack", multi: 1.5},
   "tough": {stat: "maxHp", multi: 1.5},
+  "defender": {stat: "defense", multi: 1.5},
   "shield": {stat: "block", add: 10},
   "lightarmor": {stat: "armor", add: 3},
 }
@@ -16,6 +17,7 @@ const ALL_ENEMIES = {
 const DEFAULT_ENEMY = "kobold"
 
 const BASE_ATTACK_VALUE = 2
+const BASE_DEFENSE_VALUE = 10
 const ATTACK_VARIANCE = 1.5 // Must be > 1.0
 const CHALLENGE_SCALING = 1.5
 const BASE_SPEED_VALUE = 10
@@ -44,6 +46,7 @@ function buildEnemyStatBlock(enemyId) {
   const statMultiplier = Math.pow(enemy.challenge, CHALLENGE_SCALING)
   let block = {
     attack: Math.ceil(BASE_ATTACK_VALUE * statMultiplier),
+    defense: Math.ceil(BASE_DEFENSE_VALUE * statMultiplier),
     speed: Math.ceil(BASE_SPEED_VALUE * statMultiplier),
     maxHp: Math.ceil(BASE_MAXHP_VALUE * statMultiplier),
     dodge: Math.ceil(BASE_DODGE_VALUE * statMultiplier),
