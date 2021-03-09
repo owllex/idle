@@ -35,7 +35,7 @@ function you(name, capitalizeName) {
     name = 'you'
   }
   if (capitalizeName) {
-    return capitalize(capitalizeName)
+    return capitalize(name)
   }
   return name
 }
@@ -47,7 +47,7 @@ function your(name, capitalizeName) {
     name += "'s"
   }
   if (capitalizeName) {
-    return capitalize(capitalizeName)
+    return capitalize(name)
   }
   return name
 }
