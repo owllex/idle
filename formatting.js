@@ -11,6 +11,10 @@ function wrapWithColor(htmlString, colorCode) {
   return `<span class=${colorCode}>${htmlString}</span>`
 }
 
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 // Like string.padEnd, but doesn't count HTML against the length.
 function smartPadEnd(str, targetLength, padString) {
   let newLength = targetLength
