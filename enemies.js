@@ -27,23 +27,12 @@ function applyTag(tag, block) {
   if (!tagData || !tagData.stat || !tagData.multi) {
     return
   }
-  if (tagData.stat == "attack") {
-    if (tagData.add) {
-      block["attackMin"] += tagData.add
-      block["attackMax"] += tagData.add
-    }
-    if (tagData.multi) {
-      block["attackMin"] *= tagData.multi
-      block["attackMax"] *= tagData.multi
-    }
-  } else {
-    if (tagData.add) {
-      block[tagData.stat] += tagData.add
-    }
-    if (tagData.multi) {
-      block[tagData.stat] *= tagData.multi
-    }
-  }  
+  if (tagData.add) {
+    block[tagData.stat] += tagData.add
+  }
+  if (tagData.multi) {
+    block[tagData.stat] *= tagData.multi
+  }
 }
 
 function buildEnemyStatBlock(enemyId) {
