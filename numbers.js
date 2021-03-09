@@ -39,3 +39,7 @@ function formatNumber(num) {
 function random(low, high) {
   return Math.floor((Math.random() * high) + low);
 }
+
+function random(high) {
+  return random(1, high)
+}
