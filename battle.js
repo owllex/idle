@@ -107,39 +107,39 @@ function enemyTurn(enemyId, output) {
   log(output, `${enemyId} Turn!`)
 }
 
-// Executes the next turn of the battle.
-function nextTurn(output) {
-  // Figure out who is going next.
-  let bestSteps = (user.battle.maxInit - user.battle.heroInit) / user.stats.current.speed
-  let next = "hero"
-  for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
-    let steps = (user.battle.maxInit - data.init) / data.stats.speed
-    if (steps < bestSteps) {
-      bestSteps = steps
-      next = enemyId
-    }
-  }
-  bestSteps = Math.ceil(bestSteps)
-  // If a combatant already has enough initiative to take a turn, don't advance
-  // anyone's initative. If multiple combatants are ready at the same time, ties are
-  // broken arbitrarily.
-  if (bestSteps > 0) {
-    // Advance all initiative trackers by the number of steps for the next to go.
-    user.battle.heroInit += (user.stats.current.speed * bestSteps)
-    for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
-      data.init += (data.stats.speed * bestSteps)
-    }
-  }
+// // Executes the next turn of the battle.
+// function nextTurn(output) {
+//   // Figure out who is going next.
+//   let bestSteps = (user.battle.maxInit - user.battle.heroInit) / user.stats.current.speed
+//   let next = "hero"
+//   for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
+//     let steps = (user.battle.maxInit - data.init) / data.stats.speed
+//     if (steps < bestSteps) {
+//       bestSteps = steps
+//       next = enemyId
+//     }
+//   }
+//   bestSteps = Math.ceil(bestSteps)
+//   // If a combatant already has enough initiative to take a turn, don't advance
+//   // anyone's initative. If multiple combatants are ready at the same time, ties are
+//   // broken arbitrarily.
+//   if (bestSteps > 0) {
+//     // Advance all initiative trackers by the number of steps for the next to go.
+//     user.battle.heroInit += (user.stats.current.speed * bestSteps)
+//     for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
+//       data.init += (data.stats.speed * bestSteps)
+//     }
+//   }
   
-  console.log(`${next} turn`)
-  if (next == "hero") {
-    user.battle.heroInit -= user.battle.maxInit
-    heroTurn(output)
-  } else {
-    user.battle.enemies[next] -= user.battle.maxInit
-    enemyTurn(next, output)
-  }
-}
+//   console.log(`${next} turn`)
+//   if (next == "hero") {
+//     user.battle.heroInit -= user.battle.maxInit
+//     heroTurn(output)
+//   } else {
+//     user.battle.enemies[next] -= user.battle.maxInit
+//     enemyTurn(next, output)
+//   }
+// }
 
 function tickBattle(output) {
   if (!user.battle.active) {
@@ -152,12 +152,27 @@ function tickBattle(output) {
     heroTurn(output)
   }
   for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
+    if (data.hp <= 0) {
+      // Skip dead enemies.
+      continue
+    }
     data.init += data.stats.speed
     if (data.init > user.battle.maxInit) {
       data.init -= user.battle.maxInit
       enemyTurn(enemyId, output)
     }
-  }  
+  }
+  // Check to see if the battle is over.
+  if (user.vitals.hp <= 0) {
+    endBattle()
+    // TODO: hero death
+    return
+  }
+  if (Object.values(user.battle.enemies).all((enemy) => {enemy.hp <= 0})) {
+    endBattle()
+    // TODO: victory
+    return
+  }
 }
 
 function startBattleTimer(output) {
