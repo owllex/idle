@@ -137,6 +137,7 @@ function tickBattle(output) {
     stopBattleTimer()
     return
   }
+  log(output, '.')
   user.battle.heroInit += user.stats.current.speed
   if (user.battle.heroInit >= user.battle.maxInit) {
     user.battle.heroInit -= user.battle.maxInit
