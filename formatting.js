@@ -11,6 +11,8 @@ function wrapWithColor(htmlString, colorCode) {
   return `<span class=${colorCode}>${htmlString}</span>`
 }
 
+const color = wrapWithColor
+
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
