@@ -64,3 +64,16 @@ function log(output, html) {
 function logInput(output, text) {
   logWithClass(output, "> " + text, "input-content")
 }
+
+function logPartial(output, html) {
+  let node = output.lastElementChild
+  if (node && 'partial' in node.classList) {
+    node.innerHTML = node.innerHTML + text
+  } else {
+    let preNode = document.createElement("PRE")
+    preNode.innerHTML = html
+    preNode.classList.add("output-content")
+    preNode.classList.add("partial")
+    output.appendChild(preNode)
+  }
+}
