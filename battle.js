@@ -38,8 +38,18 @@ function assignEnemyDamage(enemyId, damage, output) {
 }
 
 function heroTurn(output) {
-  // Select target. Right now, just the first enemy.
-  let target = Object.keys(user.battle.enemies)[0]
+  // Select target. Right now, just the first living enemy.
+  let target = null
+  for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
+    if (data.hp > 0) {
+      target = enemyId
+      break
+    }
+  }
+  if (!target) {
+    console.log('No targets to attack!')
+    return
+  }
   let enemy = user.battle.enemies[target]
   
   // Hero rolls to attack.
