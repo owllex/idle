@@ -53,26 +53,26 @@ function your(name) {
 }
 
 function hitText(attacker, defender, damage, verb) {
-  return `${you(attacker)} ${attackVerb(attacker, verb)} at ${you(defender)} for ${num(damage)} damage.`
+  return `${you(attacker, true)} ${attackVerb(attacker, verb)} at ${you(defender)} for ${num(damage)} damage.`
 }
 
 function criticalHitText(attacker, defender, damage, verb) {
-  return `${you(attacker)} ${attackVerb(attacker, verb)} at ${you(defender)} and scores a ${color('critical hit', COLOR_RED)} for ${num(damage, COLOR_YELLOW)} damage.`
+  return `${you(attacker, true)} ${attackVerb(attacker, verb)} at ${you(defender)} and scores a ${color('critical hit', COLOR_RED)} for ${num(damage, COLOR_YELLOW)} damage.`
 }
 
 function missText(attacker, defender, verb) {
-  return `${you(attacker)} ${attackVerb(attacker, verb)} at ${you(defender)} but ${color('misses', COLOR_GRAY)}.`
+  return `${you(attacker, true)} ${attackVerb(attacker, verb)} at ${you(defender)} but ${color(conjugate(attacker, 'miss', 'misses'), COLOR_GRAY)}.`
 }
 
 function dodgeText(attacker, defender) {
-  return `${you(defender)} ${color(conjugate(defender, 'dodge', 'dodges'), COLOR_GRAY)} out of the way of ${your(attacker)} attack.`
+  return `${you(defender, true)} ${color(conjugate(defender, 'dodge', 'dodges'), COLOR_GRAY)} out of the way of ${your(attacker)} attack.`
 }
 
 function parryText(attacker, defender) {
-  return `${you(defender)} ${color(conjugate(defender, 'parry', 'parries'), COLOR_GRAY)} ${your(attacker)} attack.`
+  return `${you(defender, true)} ${color(conjugate(defender, 'parry', 'parries'), COLOR_GRAY)} ${your(attacker)} attack.`
 }
 
 function blockText(attacker, defender, damage, verb) {
-  return `${you(attacker)} ${attackVerb(attacker, verb)} at ${you(defender)} and ${conjugate(attacker, 'strike', 'strikes')} a ${color('glancing blow', COLOR_GRAY)} for ${num(damage)} damage.`
+  return `${you(attacker, true)} ${attackVerb(attacker, verb)} at ${you(defender)} and ${conjugate(attacker, 'strike', 'strikes')} a ${color('glancing blow', COLOR_GRAY)} for ${num(damage)} damage.`
 }
 
