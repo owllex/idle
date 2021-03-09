@@ -12,18 +12,6 @@ function stopBattleTimer() {
   battleTimer = null
 }
 
-// Attack outcomes:
-// Miss
-// Dodge / Resist
-// Parry
-// Block
-// Glancing Hit
-// Hit
-// Critical Hit*
-
-// Calculate rating for each outcome and "stack" them.
-// Armor applies damage reduction if a hit occurs.
-
 function getHeroAttackVerb() {
   // Based on equipped weapons. Until weapons are implemented, use a generic verb.
   return 'default'
@@ -37,6 +25,9 @@ function assignEnemyDamage(enemyId, damage, output) {
   }
 }
 
+// Attack outcomes:
+// Miss, Dodge / Resist, Parry, Glancing Hit (Block), Hit, Critical Hit.
+// Armor applies damage reduction if a hit occurs.
 function heroTurn(output) {
   // Select target. Right now, just the first living enemy.
   let target = null
@@ -82,7 +73,7 @@ function heroTurn(output) {
   // All following outcomes incur damage.
   let minDamage = Math.floor(user.stats.current.damage * (1 - DAMAGE_VARIANCE_PERCENT))
   let maxDamage = Math.floor(user.stats.current.damage * (1 + DAMAGE_VARIANCE_PERCENT))
-  let damage = random(minDamage, maxDamage)
+  let damage = Math.max(1, random(minDamage, maxDamage) - enemy.stats.armor)
 
   if (shift < enemy.stats.block) {
     // Blocked, partial damage.
