@@ -1,5 +1,9 @@
 const INITIATIVE_MULTIPLIER = 10
 const BATTLE_UPDATE_RATE = 1
+const DAMAGE_VARIANCE_PERCENT = 0.25
+const BLOCK_DAMAGE_MULTIPLIER = 0.5
+const CRIT_DAMAGE_MULTIPLIER = 2.0
+const CRIT_DAMAGE_ROLL_MIN = 99 // Int, from 1-100
 
 let battleTimer = null
 
@@ -9,6 +13,7 @@ function stopBattleTimer() {
 }
 
 // Attack outcomes:
+// Miss
 // Dodge / Resist
 // Parry
 // Block
@@ -19,9 +24,73 @@ function stopBattleTimer() {
 // Calculate rating for each outcome and "stack" them.
 // Armor applies damage reduction if a hit occurs.
 
+function getHeroAttackVerb() {
+  // Based on equipped weapons. Until weapons are implemented, use a generic verb.
+  return 'default'
+}
+
+function assignEnemyDamage(enemyId, damage, output) {
+  let enemy = user.battle.enemies[enemyId]
+  enemy.hp -= damage
+  if (enemy.hp <= 0) {
+    log(output, `${enemyId} is defeated!`)
+  }
+}
 
 function heroTurn(output) {
-  log(output, "Hero Turn!")
+  // Select target. Right now, just the first enemy.
+  let target = Object.keys(user.battle.enemies)[0]
+  let enemy = user.battle.enemies[target]
+  
+  // Hero rolls to attack.
+  let attackRoll = random(100)
+  let attackValue = attackRoll + user.stats.current.attack
+  
+  // Enemy rolls to defend.
+  let defenseRoll = random(100)
+  let defenseValue = defenseRoll + enemy.stats.defense
+  if (attackValue < defenseValue) {
+    // Missed.
+    log(output, missText('hero', target))
+    return
+  }
+  // Walk through additional defenses.
+  let shift = attackValue - defenseValue
+  if (shift < enemy.stats.dodge) {
+    // Dodged, no damage.
+    log(output, dodgeText('hero', target))
+    return
+  }
+  shift -= enemy.stats.dodge
+  if (shift < enemy.stats.parry) {
+    // Parried, no damage.
+    log(output, parryText('hero', target))    
+    return
+  }
+  shift -= enemy.stats.parry
+  
+  // All following outcomes incur damage.
+  let minDamage = Math.floor(user.stats.current.damage * (1 - DAMAGE_VARIANCE_PERCENT))
+  let maxDamage = Math.floor(user.stats.current.damage * (1 + DAMAGE_VARIANCE_PERCENT))
+  let damage = random(minDamage, maxDamage)
+
+  if (shift < enemy.stats.block) {
+    // Blocked, partial damage.
+    damage *= BLOCK_DAMAGE_MULTIPLIER
+    log(output, blockText('hero', target, damage, getHeroAttackVerb()))    
+    assignEnemyDamage(target, damage, output)
+    return
+  }
+  if (attackRoll >= CRIT_DAMAGE_ROLL_MIN) {
+    // Critical hit.
+    damage *= CRIT_DAMAGE_MULTIPLIER
+    log(output, criticalHitText('hero', target, damage, getHeroAttackVerb()))    
+    assignEnemyDamage(target, damage, output)
+    return
+  }
+  // Regular hit.
+  log(output, hitText('hero', target, damage, getHeroAttackVerb()))
+  assignEnemyDamage(target, damage, output)
 }
 
 function enemyTurn(enemyId, output) {
@@ -104,13 +173,14 @@ function startBattle(enemyId, output) {
     heroInit: 0,
     maxInit: 0,
     enemies: {
-      [enemyId]: {stats: buildEnemyStatBlock(enemyId), init: 0},
+      [enemyId]: {stats: buildEnemyStatBlock(enemyId), init: 0, hp: 0},
     },
   }
   let bestEnemySpeed = 0;
   let enemyInitTable = {}
   for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
     data.init = random(0, INITIATIVE_MULTIPLIER * data.stats.speed)
+    data.hp = data.stats.maxHp
     bestEnemySpeed = Math.max(bestEnemySpeed, data.stats.speed)
   }
   user.battle.maxInit = INITIATIVE_MULTIPLIER * Math.max(bestEnemySpeed, user.stats.current.speed)
