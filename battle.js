@@ -1,5 +1,5 @@
 const BATTLE_UPDATE_RATE = 2 // Ticks per second
-const INITIATIVE_MULTIPLIER = 3 // Maximum multipler of the slowest and fastest combatant.
+const INITIATIVE_MULTIPLIER = 3 // Maximum number of ticks between turns of the fastest combatant.
 const DAMAGE_VARIANCE_PERCENT = 0.25
 const BLOCK_DAMAGE_MULTIPLIER = 0.5
 const CRIT_DAMAGE_MULTIPLIER = 2.0
