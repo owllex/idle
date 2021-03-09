@@ -67,7 +67,7 @@ function logInput(output, text) {
 
 function logPartial(output, html) {
   let node = output.lastElementChild
-  if (node && 'partial' in node.classList) {
+  if (node && node.classList.contains('partial')) {
     node.innerHTML = node.innerHTML + text
   } else {
     let preNode = document.createElement("PRE")
