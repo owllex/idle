@@ -53,11 +53,11 @@ function heroTurn(output) {
   let enemy = user.battle.enemies[target]
   
   // Hero rolls to attack.
-  let attackRoll = random(100)
+  let attackRoll = roll(100)
   let attackValue = attackRoll + user.stats.current.attack
   
   // Enemy rolls to defend.
-  let defenseRoll = random(100)
+  let defenseRoll = roll(100)
   let defenseValue = defenseRoll + enemy.stats.defense
   if (attackValue < defenseValue) {
     // Missed.
@@ -204,12 +204,12 @@ function startBattle(enemyId, output) {
   let bestEnemySpeed = 0;
   let enemyInitTable = {}
   for (const [enemyId, data] of Object.entries(user.battle.enemies)) {
-    data.init = random(0, INITIATIVE_MULTIPLIER * data.stats.speed)
+    data.init = roll(INITIATIVE_MULTIPLIER * data.stats.speed)
     data.hp = data.stats.maxHp
     bestEnemySpeed = Math.max(bestEnemySpeed, data.stats.speed)
   }
   user.battle.maxInit = INITIATIVE_MULTIPLIER * Math.max(bestEnemySpeed, user.stats.current.speed)
-  user.battle.heroInit = random(0, INITIATIVE_MULTIPLIER * user.stats.current.speed)
+  user.battle.heroInit = roll(INITIATIVE_MULTIPLIER * user.stats.current.speed)
   
   startBattleTimer(output)
 }
