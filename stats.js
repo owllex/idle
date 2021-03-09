@@ -36,6 +36,7 @@ const ALL_STATS = {
   // Derived stats
   "speed": {abbrev: "SPD", name: "Speed"},
   "attack": {abbrev: "ATK", name: "Attack Raing"},
+  "damage": {abbrev: "DMG", name: "Damage"},
   "dodge": {abbrev: "EVA", name: "Evasion"},
   "parry": {abbrev: "PAR", name: "Parry"},
   "block": {abbrev: "BLK", name: "Block"},
@@ -96,9 +97,18 @@ function calculateVitals(stats) {
 }
 
 function calculateDerivedStats(stats) {
+  // Attack and damage depend on equipped weapon. For now, base it on role.
+  let attackType = ALL_ROLES[user.currentRole].attackType
+  let attackStatValue = 0
+  if (attackType == 'brute') {
+    attackStatValue = stats.str
+  } else if (attackType == 'finesse' || attackType == 'ranged') {
+    attackStatValue = stats.dex
+  }
   return {
     speed: Math.floor(stats.agi),
-    attack: 0,
+    attack: Math.floor(attackStatValue),
+    damage: Math.floor(attackStatValue / 2), // Change to be based on weapon + attackStat
     dodge: 0,
     parry: 0,
     block: 0,
