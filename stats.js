@@ -75,6 +75,15 @@ function clamp(value, max) {
   return Math.max(Math.min(value, max), 0)
 }
 
+function floorStatBlock(block) {
+  for (const stat of Object.keys(ALL_STATS)) {
+    if (stat in block) {
+      block[stat] = Math.floor(block[stat])
+    }
+  }
+  return block
+}
+
 // Fixes vitals being out of range due to statistic adjustments.
 function adjustVitals() {
   user.vitals.hp = clamp(user.vitals.hp, user.vitals.maxHp)
@@ -130,6 +139,7 @@ function updateStats() {
   }
   let derivedStats = calculateDerivedStats(newStats)
   newStats = addStatBlocks(newStats, derivedStats)
+  floorStatBlock(newStats)
   user.stats.current = newStats
 
   let derivedVitals = calculateVitals(newStats)
