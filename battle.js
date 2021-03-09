@@ -52,7 +52,7 @@ function heroTurn(output) {
   let defenseValue = defenseRoll + enemy.stats.defense
   if (attackValue < defenseValue) {
     // Missed.
-    log(output, missText('hero', target))
+    log(output, missText('hero', target, getHeroAttackVerb()))
     return
   }
   // Walk through additional defenses.
