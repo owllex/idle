@@ -30,24 +30,24 @@ function num(number, color) {
   return color(Math.ceil(number.toString()), color)
 }
 
-function you(name, capitalize) {
+function you(name, capitalizeName) {
   if (name == 'hero') {
     name = 'you'
   }
-  if (capitalize) {
-    return capitalize(name)
+  if (capitalizeName) {
+    return capitalize(capitalizeName)
   }
   return name
 }
 
-function your(name) {
+function your(name, capitalizeName) {
   if (name == 'hero') {
     name = 'your'
   } else {
     name += "'s"
   }
-  if (capitalize) {
-    return capitalize(name)
+  if (capitalizeName) {
+    return capitalize(capitalizeName)
   }
   return name
 }
