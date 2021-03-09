@@ -159,7 +159,7 @@ function tickBattle(output) {
     // TODO: hero death
     return
   }
-  if (Object.values(user.battle.enemies).all((enemy) => {enemy.hp <= 0})) {
+  if (Object.values(user.battle.enemies).every((enemy) => {enemy.hp <= 0})) {
     endBattle()
     // TODO: victory
     return
