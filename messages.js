@@ -11,15 +11,11 @@ function conjugate(subject, secondPerson, thirdPerson) {
   return subject == 'hero' ? secondPerson : thirdPerson
 }
 
-function conjugate(subject, conjugations) {
-  return subject == 'hero' ? conjugations[0] : conjugations[1]
-}
-
 function attackVerb(subject, verb) {
   if (ALL_ATTACK_VERBS[verb]) {
-    return conjugate(subject, ALL_ATTACK_VERBS[verb])
+    return conjugate(subject, ...ALL_ATTACK_VERBS[verb])
   }
-  return conjugate(subject, ALL_ATTACK_VERBS['default'])
+  return conjugate(subject, ...ALL_ATTACK_VERBS['default'])
 }
 
 function num(number, colorCode) {
