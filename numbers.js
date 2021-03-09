@@ -40,6 +40,6 @@ function random(low, high) {
   return Math.floor((Math.random() * high) + low);
 }
 
-function random(high) {
+function roll(high) {
   return random(1, high)
 }
