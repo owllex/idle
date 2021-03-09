@@ -1,9 +1,10 @@
 const ALL_ROLES = {
-  "Wanderer": {},
-  "Fighter": {},
-  "Rogue": {},
-  "Apprentice": {},
-  "Acolyte": {},
+  "Wanderer": {attackType: 'brute'},
+  "Fighter": {attackType: 'brute'},
+  "Ranger": {attackType: 'ranged'},
+  "Rogue": {attackType: 'finesse'},
+  "Apprentice": {attackType: 'brute'},
+  "Acolyte": {attackType: 'brute'},
 }
 
 let rolePrefixTable = {}
@@ -19,13 +20,15 @@ function getBonusBlockForRole(role, level) {
     case "Wanderer":
       return {active: {maxHp: level - 1}, global: {maxHp: level - 1}}
     case "Fighter":
-      return {active: {str: level - 1}, global: {str: level - 1}}
+      return {active: {str: level - 1, vit: level / 2}, global: {str: level - 1}}
+    case "Ranger":
+      return {active: {dex: level - 1, wis: level / 2}, global: {dex: level - 1}}
     case "Apprentice":
-      return {active: {int: level - 1}, global: {int: level - 1}}
+      return {active: {int: level - 1, mag: level / 2}, global: {int: level - 1}}
     case "Rogue":
-      return {active: {agi: level - 1}, global: {agi: level - 1}}
+      return {active: {dex: level - 1, agi: level / 2}, global: {dex: level - 1}}
     case "Acolyte":
-      return {active: {wis: level - 1}, global: {wis: level - 1}}
+      return {active: {wis: level - 1, mag: level / 2}, global: {wis: level - 1}}
     default:
       console.log("No role " + role);
       return {active: {}, global: {}}
